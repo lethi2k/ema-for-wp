@@ -68,7 +68,7 @@ foreach ( $lists as $list ) {
 
 	// fetch (new) interest categories for this list
 	try {
-		$interest_categories = $api_v3->get_list_interest_categories( $list->id );
+		$interest_categories = $api_v3->get_list_interest_categories( $list->uid );
 	} catch ( EMA4WP_API_Exception $e ) {
 		continue;
 	}
@@ -85,7 +85,7 @@ foreach ( $lists as $list ) {
 		$groups = array();
 
 		try {
-			$interests = $api_v3->get_list_interest_category_interests( $list->id, $interest_category->id );
+			$interests = $api_v3->get_list_interest_category_interests( $list->uid, $interest_category->id );
 		} catch ( EMA4WP_API_Exception $e ) {
 			continue;
 		}

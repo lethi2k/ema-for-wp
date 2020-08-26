@@ -128,7 +128,7 @@ final class EMA4WP_Ninja_Forms_Action extends NF_Abstracts_ActionNewsletter {
 		foreach ( $lists as $list ) {
 			$list_fields = array();
 
-			foreach ( $zozoema->get_list_merge_fields( $list->id ) as $merge_field ) {
+			foreach ( $zozoema->get_list_merge_fields( $list->uid ) as $merge_field ) {
 				$list_fields[] = array(
 					'value' => $merge_field->tag,
 					'label' => $merge_field->name,
@@ -138,7 +138,7 @@ final class EMA4WP_Ninja_Forms_Action extends NF_Abstracts_ActionNewsletter {
 			// TODO: Add support for groups once base class supports this.
 
 			$return[] = array(
-				'value'  => $list->id,
+				'value'  => $list->uid,
 				'label'  => $list->name,
 				'fields' => $list_fields,
 			);

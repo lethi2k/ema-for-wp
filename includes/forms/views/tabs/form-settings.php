@@ -29,7 +29,7 @@
 						?>
 						<li>
 							<label>
-								<input class="ema4wp-list-input" type="checkbox" name="ema4wp_form[settings][lists][]" value="<?php echo esc_attr( $list->id ); ?>" <?php checked( in_array( $list->id, $opts['lists'] ), true ); ?>> <?php echo esc_html( $list->name ); ?>
+								<input class="ema4wp-list-input" type="checkbox" name="ema4wp_form[settings][lists][]" value="<?php echo esc_attr( $list->uid ); ?>" <?php checked( in_array( $list->uid, $opts['lists'] ), true ); ?>> <?php echo esc_html( $list->name ); ?>
 							</label>
 						</li>
 						<?php

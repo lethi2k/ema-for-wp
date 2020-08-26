@@ -96,7 +96,7 @@ class EMA4WP_WPForms_Field extends WPForms_Field {
 		$option_select = sprintf( '<select name="fields[%s][zozoema_list]" data-field-id="%d" data-field-type="%s">', $field['id'], $field['id'], $this->type );
 		$lists         = $zozoema->get_lists();
 		foreach ( $lists as $list ) {
-			$option_select .= sprintf( '<option value="%s" %s>%s</option>', $list->id, selected( $list->id, $field['zozoema_list'], false ), $list->name );
+			$option_select .= sprintf( '<option value="%s" %s>%s</option>', $list->uid, selected( $list->uid, $field['zozoema_list'], false ), $list->name );
 		}
 		$option_select .= '</select>';
 

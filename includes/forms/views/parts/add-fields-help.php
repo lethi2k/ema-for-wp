@@ -26,7 +26,7 @@
 					<?php
 					foreach ( $lists as $list ) {
 						?>
-					<li data-list-id="<?php echo $list->id; ?>" style="display: <?php echo in_array( $list->id, $opts['lists'] ) ? '' : 'none'; ?>">
+					<li data-list-id="<?php echo $list->uid; ?>" style="display: <?php echo in_array( $list->uid, $opts['lists'] ) ? '' : 'none'; ?>">
 						<a href="https://admin.zozoema.com/lists/settings/merge-tags?id=<?php echo $list->web_id; ?>">
 							<span class="screen-reader-text"><?php echo esc_html__( 'Edit list fields for', 'zozoema-for-wp' ); ?> </span>
 							<?php echo $list->name; ?>

@@ -96,7 +96,7 @@ class EMA4WP_Gravity_Forms_Integration extends EMA4WP_Integration {
 				<option value="" disabled><?php _e( 'Select a ZozoEMA list', 'zozoema-for-wp' ); ?></option>
 				<?php
 				foreach ( $lists as $list ) {
-					echo sprintf( '<option value="%s">%s</option>', $list->id, $list->name );
+					echo sprintf( '<option value="%s">%s</option>', $list->uid, $list->name );
 				}
 				?>
 			</select>

@@ -18,8 +18,6 @@ class EMA4WP_API_V3 {
 	public function __construct( $api_key ) {
 	    //lay key tu pubgin
 		$this->client = new EMA4WP_API_V3_Client( $api_key );
-		$this->get_lists();
-		var_dump($this->get_lists());
 	}
 
 	/**
@@ -73,7 +71,7 @@ class EMA4WP_API_V3 {
 	 * @throws EMA4WP_API_Exception
 	 */
 	public function get_list_activity( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists', $list_id );
+		$resource = sprintf( '/lists/%s', $list_id );
 		$data     = $this->client->get( $resource, $args );
 
 		if ( is_object( $data ) && isset( $data->activity ) ) {
@@ -95,7 +93,7 @@ class EMA4WP_API_V3 {
 	 * @throws EMA4WP_API_Exception
 	 */
 	public function get_list_interest_categories( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists', $list_id );
+		$resource = sprintf( '/lists/%s', $list_id );
 		$data     = $this->client->get( $resource, $args );
         var_dump($data);
 		if ( is_object( $data ) && isset( $data->categories ) ) {
@@ -116,7 +114,7 @@ class EMA4WP_API_V3 {
 	 * @throws EMA4WP_API_Exception
 	 */
 	public function get_list_interest_category_interests( $list_id, $interest_category_id, array $args = array() ) {
-		$resource = sprintf( '/lists', $list_id, $interest_category_id );
+		$resource = sprintf( '/lists/%s', $list_id, $interest_category_id );
 		$data     = $this->client->get( $resource, $args );
 
 		if ( is_object( $data ) && isset( $data->interests ) ) {
@@ -138,7 +136,7 @@ class EMA4WP_API_V3 {
 	 * @throws EMA4WP_API_Exception
 	 */
 	public function get_list_merge_fields( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists', $list_id );
+		$resource = sprintf( '/lists/%s', $list_id );
 		$data     = $this->client->get( $resource, $args );
 
 		if ( is_object( $data ) && isset( $data->merge_fields ) ) {
@@ -158,7 +156,7 @@ class EMA4WP_API_V3 {
 	 * @throws EMA4WP_API_Exception
 	 */
 	public function get_list( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists', $list_id );
+		$resource = sprintf( '/lists/%s', $list_id );
 		$data     = $this->client->get( $resource, $args );
 		return $data;
 	}
@@ -175,9 +173,8 @@ class EMA4WP_API_V3 {
         $resource = '/lists';
         $data     = $this->client->get( $resource, $args );
         foreach ($data as $val){
-            if ( is_object( $val ) && isset( $val->uid ) ) {
-                return $val->uid;
-                break;
+            if ( is_object( $val ) && isset( $val ) ) {
+                return $val;
             }
         }
         return array();
@@ -196,7 +193,7 @@ class EMA4WP_API_V3 {
 	 */
 	public function get_list_member( $list_id, $email_address, array $args = array() ) {
 		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/api/v1/lists/5f2bd7d6b0d55/subscribers', $list_id, $subscriber_hash );
+		$resource        = sprintf( '/api/v1/lists/%s/subscribers', $list_id, $subscriber_hash );
 		$data            = $this->client->get( $resource, $args );
 		return $data;
 	}
@@ -212,7 +209,7 @@ class EMA4WP_API_V3 {
 	 * @throws EMA4WP_API_Exception
 	 */
 	public function add_list_members( $list_id, array $args ) {
-		$resource = sprintf( '/lists/5f2bd7d6b0d55/subscribers/store', $list_id );
+		$resource = sprintf( '/lists/%s/subscribers/store', $list_id );
 		return $this->client->post( $resource, $args );
 	}
 
@@ -228,8 +225,13 @@ class EMA4WP_API_V3 {
 	 * @throws EMA4WP_API_Exception
 	 */
 	public function add_new_list_member( $list_id, array $args ) {
-		$resource = sprintf( '/lists/5f2bd7d6b0d55/subscribers/store', $list_id );
-//		// make sure we're sending an object as the ZozoEMA schema requires this
+
+//        $fp = fopen('data.txt', 'w');//mở file ở chế độ write-only
+//        fwrite($fp, $list_id);
+//        fclose($fp);
+
+		$resource = sprintf( '/lists/%s/subscribers/store', $list_id );
+        // make sure we're sending an object as the ZozoEMA schema requires this
 		if ( isset( $args['merge_fields'] ) ) {
 			$args['merge_fields'] = (object) $args['merge_fields'];
 		}
@@ -289,7 +291,7 @@ class EMA4WP_API_V3 {
 	 */
 	public function update_list_member( $list_id, $email_address, array $args ) {
 		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/lists/5f2bd7d6b0d55/subscribers', $list_id, $subscriber_hash );
+		$resource        = sprintf( '/lists/%s/subscribers', $list_id, $subscriber_hash );
 
 		// make sure we're sending an object as the ZozoEMA schema requires this
 		if ( isset( $args['merge_fields'] ) ) {
@@ -314,7 +316,7 @@ class EMA4WP_API_V3 {
 	 */
 	public function delete_list_member( $list_id, $email_address ) {
 		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/lists/5f2bd7d6b0d55/subscribers/{uid}/delete', $list_id, $subscriber_hash );
+		$resource        = sprintf( '/lists/%s/subscribers/{uid}/delete', $list_id, $subscriber_hash );
 		$data            = $this->client->delete( $resource );
 		return ! ! $data;
 	}
