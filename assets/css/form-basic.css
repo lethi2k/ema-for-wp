@@ -1,0 +1,113 @@
+.ema4wp-form input[name^="_ema4wp_honey"] {
+  display: none !important; }
+
+/* ZozoEMA for WP - Default Form Styles */
+.ema4wp-form-basic,
+.ema4wp-form-theme {
+  margin: 1em 0;
+  /* Form Elements */
+  /* Remove font-weight bold from nested elements */
+  /* Alert */ }
+  .ema4wp-form-basic,
+  .ema4wp-form-basic label,
+  .ema4wp-form-basic input,
+  .ema4wp-form-theme,
+  .ema4wp-form-theme label,
+  .ema4wp-form-theme input {
+    width: auto;
+    display: block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    cursor: auto;
+    height: auto;
+    vertical-align: baseline;
+    line-height: normal; }
+  .ema4wp-form-basic:after,
+  .ema4wp-form-theme:after {
+    content: "";
+    display: table;
+    clear: both; }
+  .ema4wp-form-basic label,
+  .ema4wp-form-theme label {
+    font-weight: bold;
+    margin-bottom: 6px;
+    display: block; }
+  .ema4wp-form-basic input.placeholdersjs,
+  .ema4wp-form-theme input.placeholdersjs {
+    color: #aaa !important; }
+  .ema4wp-form-basic input[type="text"],
+  .ema4wp-form-basic input[type="email"],
+  .ema4wp-form-basic input[type="tel"],
+  .ema4wp-form-basic input[type="url"],
+  .ema4wp-form-basic input[type="date"],
+  .ema4wp-form-basic textarea,
+  .ema4wp-form-basic select,
+  .ema4wp-form-theme input[type="text"],
+  .ema4wp-form-theme input[type="email"],
+  .ema4wp-form-theme input[type="tel"],
+  .ema4wp-form-theme input[type="url"],
+  .ema4wp-form-theme input[type="date"],
+  .ema4wp-form-theme textarea,
+  .ema4wp-form-theme select {
+    min-height: 32px;
+    width: 100%;
+    max-width: 480px; }
+  .ema4wp-form-basic input[type="number"],
+  .ema4wp-form-theme input[type="number"] {
+    min-width: 40px; }
+  .ema4wp-form-basic input[type="checkbox"],
+  .ema4wp-form-basic input[type="radio"],
+  .ema4wp-form-theme input[type="checkbox"],
+  .ema4wp-form-theme input[type="radio"] {
+    position: relative;
+    margin: 0 6px 0 0;
+    padding: 0;
+    height: 13px;
+    width: 13px;
+    display: inline-block;
+    border: 0; }
+  .ema4wp-form-basic input[type="checkbox"],
+  .ema4wp-form-theme input[type="checkbox"] {
+    -webkit-appearance: checkbox;
+    -moz-appearance: checkbox;
+    appearance: checkbox; }
+  .ema4wp-form-basic input[type="radio"],
+  .ema4wp-form-theme input[type="radio"] {
+    -webkit-appearance: radio;
+    -moz-appearance: radio;
+    appearance: radio; }
+  .ema4wp-form-basic input[type="submit"],
+  .ema4wp-form-basic button,
+  .ema4wp-form-basic input[type="button"],
+  .ema4wp-form-theme input[type="submit"],
+  .ema4wp-form-theme button,
+  .ema4wp-form-theme input[type="button"] {
+    cursor: pointer;
+    display: inline-block;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none; }
+  .ema4wp-form-basic label > span,
+  .ema4wp-form-basic li > label,
+  .ema4wp-form-theme label > span,
+  .ema4wp-form-theme li > label {
+    font-weight: normal; }
+  .ema4wp-form-basic .ema4wp-alert,
+  .ema4wp-form-theme .ema4wp-alert {
+    color: #c09853;
+    clear: both; }
+  .ema4wp-form-basic .ema4wp-success,
+  .ema4wp-form-theme .ema4wp-success {
+    color: #468847; }
+  .ema4wp-form-basic .ema4wp-notice,
+  .ema4wp-form-theme .ema4wp-notice {
+    color: #3a87ad; }
+  .ema4wp-form-basic .ema4wp-error,
+  .ema4wp-form-theme .ema4wp-error {
+    color: #CD5C5C; }
+
+/* Right-To-Left specific styles */
+.rtl .ema4wp-form-reset input[type="checkbox"],
+.rtl .ema4wp-form-reset input[type="radio"] {
+  margin: 0 0 0 6px; }

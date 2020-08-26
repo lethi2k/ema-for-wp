@@ -1,0 +1,975 @@
+/* settings pages */
+#ema4wp-admin,
+.ema4wp-admin {
+  /* Grid */
+  /** Whitespace control */
+  /* Tabs */
+  /* settings pages */
+  /* BASICS */
+  /* PADDING */
+  /* GUTTER */
+  /* CURSOR */
+  /* Shown when moving in bi-directional text */
+  /* Can style cursor different in overwrite (non-insert) mode */
+  /* DEFAULT THEME */
+  /* Default styles for common addons */
+  /* STOP */
+  /* The rest of this file contains styles related to the mechanics of
+   the editor. You probably shouldn't touch them. */
+  /* The fake, visible scrollbars. Used to force redraw during scrolling
+   before actual scrolling happens, thus preventing shaking and
+   flickering artifacts. */
+  /* Force content-box sizing for the elements where we expect it */
+  /* Used to force a border model for a node */
+  /* See issue #2901 */
+  /* Help users use markselection to safely style text background */
+  /* Codemirror */
+  /* Add logo to page title */
+  /** Core Customizations */ }
+  #ema4wp-admin .row,
+  #ema4wp-admin .ema4wp-row,
+  .ema4wp-admin .row,
+  .ema4wp-admin .ema4wp-row {
+    margin-left: -20px;
+    margin-right: -20px;
+    float: none; }
+  #ema4wp-admin .row .col,
+  #ema4wp-admin .ema4wp-row .ema4wp-col,
+  .ema4wp-admin .row .col,
+  .ema4wp-admin .ema4wp-row .ema4wp-col {
+    padding: 0 20px;
+    float: left;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  #ema4wp-admin .row .col-1,
+  #ema4wp-admin .ema4wp-row .ema4wp-col-1,
+  .ema4wp-admin .row .col-1,
+  .ema4wp-admin .ema4wp-row .ema4wp-col-1 {
+    width: 16.666%; }
+  #ema4wp-admin .row .col-2,
+  #ema4wp-admin .ema4wp-row .ema4wp-col-2,
+  .ema4wp-admin .row .col-2,
+  .ema4wp-admin .ema4wp-row .ema4wp-col-2 {
+    width: 33.333%; }
+  #ema4wp-admin .row .col-3,
+  #ema4wp-admin .ema4wp-row .ema4wp-col-3,
+  .ema4wp-admin .row .col-3,
+  .ema4wp-admin .ema4wp-row .ema4wp-col-3 {
+    width: 50%; }
+  #ema4wp-admin .row .col-4,
+  #ema4wp-admin .ema4wp-row .ema4wp-col-4,
+  .ema4wp-admin .row .col-4,
+  .ema4wp-admin .ema4wp-row .ema4wp-col-4 {
+    width: 66.666%; }
+  #ema4wp-admin .row .col-5,
+  #ema4wp-admin .ema4wp-row .ema4wp-col-5,
+  .ema4wp-admin .row .col-5,
+  .ema4wp-admin .ema4wp-row .ema4wp-col-5 {
+    width: 83.333%; }
+  #ema4wp-admin .row .col-6,
+  #ema4wp-admin .ema4wp-row .ema4wp-col-6,
+  .ema4wp-admin .row .col-6,
+  .ema4wp-admin .ema4wp-row .ema4wp-col-6 {
+    width: 100%; }
+  #ema4wp-admin .row:before,
+  #ema4wp-admin .row:after,
+  #ema4wp-admin .ema4wp-row:before,
+  #ema4wp-admin .ema4wp-row:after,
+  #ema4wp-admin .clearfix:before,
+  #ema4wp-admin .clearfix:after,
+  .ema4wp-admin .row:before,
+  .ema4wp-admin .row:after,
+  .ema4wp-admin .ema4wp-row:before,
+  .ema4wp-admin .ema4wp-row:after,
+  .ema4wp-admin .clearfix:before,
+  .ema4wp-admin .clearfix:after {
+    content: " ";
+    /* 1 */
+    display: table;
+    /* 2 */ }
+  #ema4wp-admin .row:after,
+  #ema4wp-admin .ema4wp-row:after,
+  #ema4wp-admin .clearfix:after,
+  .ema4wp-admin .row:after,
+  .ema4wp-admin .ema4wp-row:after,
+  .ema4wp-admin .clearfix:after {
+    clear: both; }
+  @media (max-width: 1200px) {
+    #ema4wp-admin .row .col,
+    #ema4wp-admin .ema4wp-row .ema4wp-col,
+    .ema4wp-admin .row .col,
+    .ema4wp-admin .ema4wp-row .ema4wp-col {
+      width: 100%;
+      float: none;
+      margin: 10px 0; } }
+  #ema4wp-admin .status,
+  .ema4wp-admin .status {
+    display: inline-block;
+    margin-left: 1em;
+    padding: 3px 6px;
+    color: white;
+    font-size: 12px;
+    font-weight: bold; }
+    #ema4wp-admin .status.positive,
+    .ema4wp-admin .status.positive {
+      background-color: limeGreen; }
+    #ema4wp-admin .status.negative,
+    .ema4wp-admin .status.negative {
+      background-color: red; }
+    #ema4wp-admin .status.neutral,
+    .ema4wp-admin .status.neutral {
+      background: gray; }
+  #ema4wp-admin .green,
+  .ema4wp-admin .green {
+    color: green; }
+  #ema4wp-admin .red,
+  .ema4wp-admin .red {
+    color: red; }
+  #ema4wp-admin .valigntop,
+  .ema4wp-admin .valigntop {
+    vertical-align: top !important; }
+  #ema4wp-admin .big-margin,
+  .ema4wp-admin .big-margin {
+    margin-top: 60px;
+    margin-bottom: 60px; }
+  #ema4wp-admin .medium-margin,
+  .ema4wp-admin .medium-margin {
+    margin-top: 40px;
+    margin-bottom: 40px; }
+  #ema4wp-admin .small-margin,
+  .ema4wp-admin .small-margin {
+    margin-top: 20px;
+    margin-bottom: 20px; }
+  #ema4wp-admin .tiny-margin,
+  .ema4wp-admin .tiny-margin {
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  #ema4wp-admin .hover-activated,
+  .ema4wp-admin .hover-activated {
+    opacity: 0.5; }
+  #ema4wp-admin .hover-activated:hover,
+  .ema4wp-admin .hover-activated:hover {
+    cursor: pointer;
+    opacity: 1; }
+  #ema4wp-admin .help-text,
+  .ema4wp-admin .help-text {
+    font-size: 14px; }
+    #ema4wp-admin .help-text p,
+    .ema4wp-admin .help-text p {
+      margin: 10px 0;
+      font-size: 14px; }
+    #ema4wp-admin .help-text ul,
+    .ema4wp-admin .help-text ul {
+      list-style: square;
+      margin-top: 15px;
+      padding-left: 40px; }
+  #ema4wp-admin .help,
+  .ema4wp-admin .help {
+    font-style: italic; }
+  #ema4wp-admin .muted,
+  .ema4wp-admin .muted {
+    color: #aaa; }
+  #ema4wp-admin .red,
+  .ema4wp-admin .red {
+    color: red; }
+  #ema4wp-admin .green,
+  .ema4wp-admin .green {
+    color: #32cd32; }
+  #ema4wp-admin .ema4wp-notice,
+  .ema4wp-admin .ema4wp-notice {
+    padding: 6px 12px;
+    color: #31708f;
+    background: #d9edf7;
+    border: 1px solid #bce8f1;
+    margin: 1em 0 !important; }
+  #ema4wp-admin .ema4wp-is-dismissible,
+  .ema4wp-admin .ema4wp-is-dismissible {
+    padding-right: 38px;
+    position: relative; }
+  #ema4wp-admin .column-ID,
+  .ema4wp-admin .column-ID {
+    width: 10%; }
+  #ema4wp-admin .block,
+  .ema4wp-admin .block {
+    display: block; }
+  #ema4wp-admin .code-sample,
+  .ema4wp-admin .code-sample {
+    font-family: Consolas, Monaco, Lucida Console, monospace;
+    font-size: 12px;
+    background: white; }
+  #ema4wp-admin .breadcrumbs,
+  .ema4wp-admin .breadcrumbs {
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 1em; }
+  #ema4wp-admin .ema4wp-loader,
+  .ema4wp-admin .ema4wp-loader {
+    position: relative;
+    display: inline-block;
+    text-indent: -9999999px;
+    border: 3px solid rgba(0, 0, 0, 0.2);
+    border-left-color: #000000;
+    -webkit-transform: translateZ(0);
+    -ms-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-animation: load8 1.1s infinite linear;
+    animation: load8 1.1s infinite linear;
+    overflow: hidden;
+    border-radius: 50%;
+    vertical-align: middle;
+    width: 12px;
+    height: 12px;
+    margin-bottom: 3px;
+    margin-left: 3px;
+    margin-right: 3px; }
+
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg); }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg); } }
+  #ema4wp-admin .tab,
+  .ema4wp-admin .tab {
+    display: none;
+    background: inherit;
+    border: none;
+    font-weight: initial; }
+  #ema4wp-admin .tab.tab-active,
+  .ema4wp-admin .tab.tab-active {
+    display: block; }
+  #ema4wp-admin .tab h2,
+  .ema4wp-admin .tab h2 {
+    margin-top: 20px; }
+  #ema4wp-admin .CodeMirror,
+  .ema4wp-admin .CodeMirror {
+    /* Set height, width, borders, and global font properties here */
+    font-family: monospace;
+    height: 300px;
+    color: black;
+    direction: ltr; }
+  #ema4wp-admin .CodeMirror-lines,
+  .ema4wp-admin .CodeMirror-lines {
+    padding: 4px 0;
+    /* Vertical padding around content */ }
+  #ema4wp-admin .CodeMirror pre,
+  .ema4wp-admin .CodeMirror pre {
+    padding: 0 4px;
+    /* Horizontal padding of content */ }
+  #ema4wp-admin .CodeMirror-scrollbar-filler, #ema4wp-admin .CodeMirror-gutter-filler,
+  .ema4wp-admin .CodeMirror-scrollbar-filler,
+  .ema4wp-admin .CodeMirror-gutter-filler {
+    background-color: white;
+    /* The little square between H and V scrollbars */ }
+  #ema4wp-admin .CodeMirror-gutters,
+  .ema4wp-admin .CodeMirror-gutters {
+    border-right: 1px solid #ddd;
+    background-color: #f7f7f7;
+    white-space: nowrap; }
+  #ema4wp-admin .CodeMirror-linenumber,
+  .ema4wp-admin .CodeMirror-linenumber {
+    padding: 0 3px 0 5px;
+    min-width: 20px;
+    text-align: right;
+    color: #999;
+    white-space: nowrap; }
+  #ema4wp-admin .CodeMirror-guttermarker,
+  .ema4wp-admin .CodeMirror-guttermarker {
+    color: black; }
+  #ema4wp-admin .CodeMirror-guttermarker-subtle,
+  .ema4wp-admin .CodeMirror-guttermarker-subtle {
+    color: #999; }
+  #ema4wp-admin .CodeMirror-cursor,
+  .ema4wp-admin .CodeMirror-cursor {
+    border-left: 1px solid black;
+    border-right: none;
+    width: 0; }
+  #ema4wp-admin .CodeMirror div.CodeMirror-secondarycursor,
+  .ema4wp-admin .CodeMirror div.CodeMirror-secondarycursor {
+    border-left: 1px solid silver; }
+  #ema4wp-admin .cm-fat-cursor .CodeMirror-cursor,
+  .ema4wp-admin .cm-fat-cursor .CodeMirror-cursor {
+    width: auto;
+    border: 0 !important;
+    background: #7e7; }
+  #ema4wp-admin .cm-fat-cursor div.CodeMirror-cursors,
+  .ema4wp-admin .cm-fat-cursor div.CodeMirror-cursors {
+    z-index: 1; }
+  #ema4wp-admin .cm-fat-cursor-mark,
+  .ema4wp-admin .cm-fat-cursor-mark {
+    background-color: rgba(20, 255, 20, 0.5);
+    -webkit-animation: blink 1.06s steps(1) infinite;
+    -moz-animation: blink 1.06s steps(1) infinite;
+    animation: blink 1.06s steps(1) infinite; }
+  #ema4wp-admin .cm-animate-fat-cursor,
+  .ema4wp-admin .cm-animate-fat-cursor {
+    width: auto;
+    border: 0;
+    -webkit-animation: blink 1.06s steps(1) infinite;
+    -moz-animation: blink 1.06s steps(1) infinite;
+    animation: blink 1.06s steps(1) infinite;
+    background-color: #7e7; }
+
+@-moz-keyframes blink {
+  0% { }
+  50% {
+    background-color: transparent; }
+  100% { } }
+
+@-webkit-keyframes blink {
+  0% { }
+  50% {
+    background-color: transparent; }
+  100% { } }
+
+@keyframes blink {
+  0% { }
+  50% {
+    background-color: transparent; }
+  100% { } }
+  #ema4wp-admin .cm-tab,
+  .ema4wp-admin .cm-tab {
+    display: inline-block;
+    text-decoration: inherit; }
+  #ema4wp-admin .CodeMirror-rulers,
+  .ema4wp-admin .CodeMirror-rulers {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: -50px;
+    bottom: -20px;
+    overflow: hidden; }
+  #ema4wp-admin .CodeMirror-ruler,
+  .ema4wp-admin .CodeMirror-ruler {
+    border-left: 1px solid #ccc;
+    top: 0;
+    bottom: 0;
+    position: absolute; }
+  #ema4wp-admin .cm-s-default .cm-header,
+  .ema4wp-admin .cm-s-default .cm-header {
+    color: blue; }
+  #ema4wp-admin .cm-s-default .cm-quote,
+  .ema4wp-admin .cm-s-default .cm-quote {
+    color: #090; }
+  #ema4wp-admin .cm-negative,
+  .ema4wp-admin .cm-negative {
+    color: #d44; }
+  #ema4wp-admin .cm-positive,
+  .ema4wp-admin .cm-positive {
+    color: #292; }
+  #ema4wp-admin .cm-header, #ema4wp-admin .cm-strong,
+  .ema4wp-admin .cm-header,
+  .ema4wp-admin .cm-strong {
+    font-weight: bold; }
+  #ema4wp-admin .cm-em,
+  .ema4wp-admin .cm-em {
+    font-style: italic; }
+  #ema4wp-admin .cm-link,
+  .ema4wp-admin .cm-link {
+    text-decoration: underline; }
+  #ema4wp-admin .cm-strikethrough,
+  .ema4wp-admin .cm-strikethrough {
+    text-decoration: line-through; }
+  #ema4wp-admin .cm-s-default .cm-keyword,
+  .ema4wp-admin .cm-s-default .cm-keyword {
+    color: #708; }
+  #ema4wp-admin .cm-s-default .cm-atom,
+  .ema4wp-admin .cm-s-default .cm-atom {
+    color: #219; }
+  #ema4wp-admin .cm-s-default .cm-number,
+  .ema4wp-admin .cm-s-default .cm-number {
+    color: #164; }
+  #ema4wp-admin .cm-s-default .cm-def,
+  .ema4wp-admin .cm-s-default .cm-def {
+    color: #00f; }
+  #ema4wp-admin .cm-s-default .cm-variable-2,
+  .ema4wp-admin .cm-s-default .cm-variable-2 {
+    color: #05a; }
+  #ema4wp-admin .cm-s-default .cm-variable-3, #ema4wp-admin .cm-s-default .cm-type,
+  .ema4wp-admin .cm-s-default .cm-variable-3,
+  .ema4wp-admin .cm-s-default .cm-type {
+    color: #085; }
+  #ema4wp-admin .cm-s-default .cm-comment,
+  .ema4wp-admin .cm-s-default .cm-comment {
+    color: #a50; }
+  #ema4wp-admin .cm-s-default .cm-string,
+  .ema4wp-admin .cm-s-default .cm-string {
+    color: #a11; }
+  #ema4wp-admin .cm-s-default .cm-string-2,
+  .ema4wp-admin .cm-s-default .cm-string-2 {
+    color: #f50; }
+  #ema4wp-admin .cm-s-default .cm-meta,
+  .ema4wp-admin .cm-s-default .cm-meta {
+    color: #555; }
+  #ema4wp-admin .cm-s-default .cm-qualifier,
+  .ema4wp-admin .cm-s-default .cm-qualifier {
+    color: #555; }
+  #ema4wp-admin .cm-s-default .cm-builtin,
+  .ema4wp-admin .cm-s-default .cm-builtin {
+    color: #30a; }
+  #ema4wp-admin .cm-s-default .cm-bracket,
+  .ema4wp-admin .cm-s-default .cm-bracket {
+    color: #997; }
+  #ema4wp-admin .cm-s-default .cm-tag,
+  .ema4wp-admin .cm-s-default .cm-tag {
+    color: #170; }
+  #ema4wp-admin .cm-s-default .cm-attribute,
+  .ema4wp-admin .cm-s-default .cm-attribute {
+    color: #00c; }
+  #ema4wp-admin .cm-s-default .cm-hr,
+  .ema4wp-admin .cm-s-default .cm-hr {
+    color: #999; }
+  #ema4wp-admin .cm-s-default .cm-link,
+  .ema4wp-admin .cm-s-default .cm-link {
+    color: #00c; }
+  #ema4wp-admin .cm-s-default .cm-error,
+  .ema4wp-admin .cm-s-default .cm-error {
+    color: #f00; }
+  #ema4wp-admin .cm-invalidchar,
+  .ema4wp-admin .cm-invalidchar {
+    color: #f00; }
+  #ema4wp-admin .CodeMirror-composing,
+  .ema4wp-admin .CodeMirror-composing {
+    border-bottom: 2px solid; }
+  #ema4wp-admin div.CodeMirror span.CodeMirror-matchingbracket,
+  .ema4wp-admin div.CodeMirror span.CodeMirror-matchingbracket {
+    color: #0b0; }
+  #ema4wp-admin div.CodeMirror span.CodeMirror-nonmatchingbracket,
+  .ema4wp-admin div.CodeMirror span.CodeMirror-nonmatchingbracket {
+    color: #a22; }
+  #ema4wp-admin .CodeMirror-matchingtag,
+  .ema4wp-admin .CodeMirror-matchingtag {
+    background: rgba(255, 150, 0, 0.3); }
+  #ema4wp-admin .CodeMirror-activeline-background,
+  .ema4wp-admin .CodeMirror-activeline-background {
+    background: #e8f2ff; }
+  #ema4wp-admin .CodeMirror,
+  .ema4wp-admin .CodeMirror {
+    position: relative;
+    overflow: hidden;
+    background: white; }
+  #ema4wp-admin .CodeMirror-scroll,
+  .ema4wp-admin .CodeMirror-scroll {
+    overflow: scroll !important;
+    /* Things will break if this is overridden */
+    /* 30px is the magic margin used to hide the element's real scrollbars */
+    /* See overflow: hidden in .CodeMirror */
+    margin-bottom: -30px;
+    margin-right: -30px;
+    padding-bottom: 30px;
+    height: 100%;
+    outline: none;
+    /* Prevent dragging from highlighting the element */
+    position: relative; }
+  #ema4wp-admin .CodeMirror-sizer,
+  .ema4wp-admin .CodeMirror-sizer {
+    position: relative;
+    border-right: 30px solid transparent; }
+  #ema4wp-admin .CodeMirror-vscrollbar, #ema4wp-admin .CodeMirror-hscrollbar, #ema4wp-admin .CodeMirror-scrollbar-filler, #ema4wp-admin .CodeMirror-gutter-filler,
+  .ema4wp-admin .CodeMirror-vscrollbar,
+  .ema4wp-admin .CodeMirror-hscrollbar,
+  .ema4wp-admin .CodeMirror-scrollbar-filler,
+  .ema4wp-admin .CodeMirror-gutter-filler {
+    position: absolute;
+    z-index: 6;
+    display: none; }
+  #ema4wp-admin .CodeMirror-vscrollbar,
+  .ema4wp-admin .CodeMirror-vscrollbar {
+    right: 0;
+    top: 0;
+    overflow-x: hidden;
+    overflow-y: scroll; }
+  #ema4wp-admin .CodeMirror-hscrollbar,
+  .ema4wp-admin .CodeMirror-hscrollbar {
+    bottom: 0;
+    left: 0;
+    overflow-y: hidden;
+    overflow-x: scroll; }
+  #ema4wp-admin .CodeMirror-scrollbar-filler,
+  .ema4wp-admin .CodeMirror-scrollbar-filler {
+    right: 0;
+    bottom: 0; }
+  #ema4wp-admin .CodeMirror-gutter-filler,
+  .ema4wp-admin .CodeMirror-gutter-filler {
+    left: 0;
+    bottom: 0; }
+  #ema4wp-admin .CodeMirror-gutters,
+  .ema4wp-admin .CodeMirror-gutters {
+    position: absolute;
+    left: 0;
+    top: 0;
+    min-height: 100%;
+    z-index: 3; }
+  #ema4wp-admin .CodeMirror-gutter,
+  .ema4wp-admin .CodeMirror-gutter {
+    white-space: normal;
+    height: 100%;
+    display: inline-block;
+    vertical-align: top;
+    margin-bottom: -30px; }
+  #ema4wp-admin .CodeMirror-gutter-wrapper,
+  .ema4wp-admin .CodeMirror-gutter-wrapper {
+    position: absolute;
+    z-index: 4;
+    background: none !important;
+    border: none !important; }
+  #ema4wp-admin .CodeMirror-gutter-background,
+  .ema4wp-admin .CodeMirror-gutter-background {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 4; }
+  #ema4wp-admin .CodeMirror-gutter-elt,
+  .ema4wp-admin .CodeMirror-gutter-elt {
+    position: absolute;
+    cursor: default;
+    z-index: 4; }
+  #ema4wp-admin .CodeMirror-gutter-wrapper ::selection,
+  .ema4wp-admin .CodeMirror-gutter-wrapper ::selection {
+    background-color: transparent; }
+  #ema4wp-admin .CodeMirror-gutter-wrapper ::-moz-selection,
+  .ema4wp-admin .CodeMirror-gutter-wrapper ::-moz-selection {
+    background-color: transparent; }
+  #ema4wp-admin .CodeMirror-lines,
+  .ema4wp-admin .CodeMirror-lines {
+    cursor: text;
+    min-height: 1px;
+    /* prevents collapsing before first draw */ }
+  #ema4wp-admin .CodeMirror pre,
+  .ema4wp-admin .CodeMirror pre {
+    /* Reset some styles that the rest of the page might have set */
+    -moz-border-radius: 0;
+    -webkit-border-radius: 0;
+    border-radius: 0;
+    border-width: 0;
+    background: transparent;
+    font-family: inherit;
+    font-size: inherit;
+    margin: 0;
+    white-space: pre;
+    word-wrap: normal;
+    line-height: inherit;
+    color: inherit;
+    z-index: 2;
+    position: relative;
+    overflow: visible;
+    -webkit-tap-highlight-color: transparent;
+    -webkit-font-variant-ligatures: contextual;
+    font-variant-ligatures: contextual; }
+  #ema4wp-admin .CodeMirror-wrap pre,
+  .ema4wp-admin .CodeMirror-wrap pre {
+    word-wrap: break-word;
+    white-space: pre-wrap;
+    word-break: normal; }
+  #ema4wp-admin .CodeMirror-linebackground,
+  .ema4wp-admin .CodeMirror-linebackground {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 0; }
+  #ema4wp-admin .CodeMirror-linewidget,
+  .ema4wp-admin .CodeMirror-linewidget {
+    position: relative;
+    z-index: 2;
+    padding: 0.1px;
+    /* Force widget margins to stay inside of the container */ }
+  #ema4wp-admin .CodeMirror-rtl pre,
+  .ema4wp-admin .CodeMirror-rtl pre {
+    direction: rtl; }
+  #ema4wp-admin .CodeMirror-code,
+  .ema4wp-admin .CodeMirror-code {
+    outline: none; }
+  #ema4wp-admin .CodeMirror-scroll,
+  #ema4wp-admin .CodeMirror-sizer,
+  #ema4wp-admin .CodeMirror-gutter,
+  #ema4wp-admin .CodeMirror-gutters,
+  #ema4wp-admin .CodeMirror-linenumber,
+  .ema4wp-admin .CodeMirror-scroll,
+  .ema4wp-admin .CodeMirror-sizer,
+  .ema4wp-admin .CodeMirror-gutter,
+  .ema4wp-admin .CodeMirror-gutters,
+  .ema4wp-admin .CodeMirror-linenumber {
+    -moz-box-sizing: content-box;
+    box-sizing: content-box; }
+  #ema4wp-admin .CodeMirror-measure,
+  .ema4wp-admin .CodeMirror-measure {
+    position: absolute;
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden; }
+  #ema4wp-admin .CodeMirror-cursor,
+  .ema4wp-admin .CodeMirror-cursor {
+    position: absolute;
+    pointer-events: none; }
+  #ema4wp-admin .CodeMirror-measure pre,
+  .ema4wp-admin .CodeMirror-measure pre {
+    position: static; }
+  #ema4wp-admin div.CodeMirror-cursors,
+  .ema4wp-admin div.CodeMirror-cursors {
+    visibility: hidden;
+    position: relative;
+    z-index: 3; }
+  #ema4wp-admin div.CodeMirror-dragcursors,
+  .ema4wp-admin div.CodeMirror-dragcursors {
+    visibility: visible; }
+  #ema4wp-admin .CodeMirror-focused div.CodeMirror-cursors,
+  .ema4wp-admin .CodeMirror-focused div.CodeMirror-cursors {
+    visibility: visible; }
+  #ema4wp-admin .CodeMirror-selected,
+  .ema4wp-admin .CodeMirror-selected {
+    background: #d9d9d9; }
+  #ema4wp-admin .CodeMirror-focused .CodeMirror-selected,
+  .ema4wp-admin .CodeMirror-focused .CodeMirror-selected {
+    background: #d7d4f0; }
+  #ema4wp-admin .CodeMirror-crosshair,
+  .ema4wp-admin .CodeMirror-crosshair {
+    cursor: crosshair; }
+  #ema4wp-admin .CodeMirror-line::selection, #ema4wp-admin .CodeMirror-line > span::selection, #ema4wp-admin .CodeMirror-line > span > span::selection,
+  .ema4wp-admin .CodeMirror-line::selection,
+  .ema4wp-admin .CodeMirror-line > span::selection,
+  .ema4wp-admin .CodeMirror-line > span > span::selection {
+    background: #d7d4f0; }
+  #ema4wp-admin .CodeMirror-line::-moz-selection, #ema4wp-admin .CodeMirror-line > span::-moz-selection, #ema4wp-admin .CodeMirror-line > span > span::-moz-selection,
+  .ema4wp-admin .CodeMirror-line::-moz-selection,
+  .ema4wp-admin .CodeMirror-line > span::-moz-selection,
+  .ema4wp-admin .CodeMirror-line > span > span::-moz-selection {
+    background: #d7d4f0; }
+  #ema4wp-admin .cm-searching,
+  .ema4wp-admin .cm-searching {
+    background-color: #ffa;
+    background-color: rgba(255, 255, 0, 0.4); }
+  #ema4wp-admin .cm-force-border,
+  .ema4wp-admin .cm-force-border {
+    padding-right: .1px; }
+  @media print {
+    #ema4wp-admin,
+    .ema4wp-admin {
+      /* Hide the cursor when printing */ }
+      #ema4wp-admin .CodeMirror div.CodeMirror-cursors,
+      .ema4wp-admin .CodeMirror div.CodeMirror-cursors {
+        visibility: hidden; } }
+  #ema4wp-admin .cm-tab-wrap-hack:after,
+  .ema4wp-admin .cm-tab-wrap-hack:after {
+    content: ''; }
+  #ema4wp-admin span.CodeMirror-selectedtext,
+  .ema4wp-admin span.CodeMirror-selectedtext {
+    background: none; }
+  #ema4wp-admin .CodeMirror,
+  .ema4wp-admin .CodeMirror {
+    border: 1px solid #ccc;
+    min-height: 500px;
+    font-weight: normal;
+    padding: 0 4px; }
+  #ema4wp-admin .CodeMirror-empty,
+  .ema4wp-admin .CodeMirror-empty {
+    color: #999; }
+  #ema4wp-admin #ema4wp-form-preview,
+  .ema4wp-admin #ema4wp-form-preview {
+    border: 1px solid #ddd;
+    height: 500px;
+    /* codemirror + padding */
+    width: 100%;
+    border-left-width: 0;
+    border-right-width: 2px;
+    /* for scrollbar */ }
+  @media (min-width: 1186px) {
+    #ema4wp-admin .ema4wp-form-editor-wrap,
+    .ema4wp-admin .ema4wp-form-editor-wrap {
+      padding-right: 0 !important; }
+    #ema4wp-admin .ema4wp-form-preview-wrap,
+    .ema4wp-admin .ema4wp-form-preview-wrap {
+      padding-left: 0 !important; } }
+  @media (max-width: 1186px) {
+    #ema4wp-admin #ema4wp-form-preview,
+    .ema4wp-admin #ema4wp-form-preview {
+      border-left-width: 1px; } }
+  #ema4wp-admin .field-wizard,
+  .ema4wp-admin .field-wizard {
+    /* table */
+    /* checkboxes in label */ }
+    #ema4wp-admin .field-wizard h3,
+    .ema4wp-admin .field-wizard h3 {
+      margin-top: 0;
+      padding-bottom: 12px;
+      border-bottom: 1px solid #eee;
+      margin-bottom: 12px; }
+    #ema4wp-admin .field-wizard code,
+    .ema4wp-admin .field-wizard code {
+      margin-left: 10px; }
+    #ema4wp-admin .field-wizard > div,
+    .ema4wp-admin .field-wizard > div {
+      margin: 24px 0; }
+    #ema4wp-admin .field-wizard label,
+    .ema4wp-admin .field-wizard label {
+      font-weight: 600;
+      display: block;
+      margin-bottom: 3px; }
+    #ema4wp-admin .field-wizard table,
+    .ema4wp-admin .field-wizard table {
+      table-layout: fixed;
+      border-collapse: collapse;
+      border-spacing: 0; }
+    #ema4wp-admin .field-wizard tr, #ema4wp-admin .field-wizard td,
+    .ema4wp-admin .field-wizard tr,
+    .ema4wp-admin .field-wizard td {
+      vertical-align: middle; }
+    #ema4wp-admin .field-wizard td.stretch,
+    .ema4wp-admin .field-wizard td.stretch {
+      width: 100%; }
+    #ema4wp-admin .field-wizard .cb-wrap,
+    .ema4wp-admin .field-wizard .cb-wrap {
+      font-weight: normal; }
+      #ema4wp-admin .field-wizard .cb-wrap input,
+      .ema4wp-admin .field-wizard .cb-wrap input {
+        margin-right: 6px; }
+    #ema4wp-admin .field-wizard .limit-height,
+    .ema4wp-admin .field-wizard .limit-height {
+      border: 1px solid #eee;
+      padding: 6px;
+      max-height: 200px;
+      overflow-y: scroll; }
+    #ema4wp-admin .field-wizard .dashicons,
+    .ema4wp-admin .field-wizard .dashicons {
+      vertical-align: middle; }
+    #ema4wp-admin .field-wizard .help,
+    .ema4wp-admin .field-wizard .help {
+      margin-top: 0; }
+  #ema4wp-admin .available-fields,
+  .ema4wp-admin .available-fields {
+    border: 1px solid #ccc;
+    padding: 20px;
+    background: white; }
+    #ema4wp-admin .available-fields h4,
+    .ema4wp-admin .available-fields h4 {
+      font-size: 14px;
+      margin-top: 0; }
+    #ema4wp-admin .available-fields strong,
+    .ema4wp-admin .available-fields strong {
+      display: block;
+      margin-bottom: 6px; }
+    #ema4wp-admin .available-fields button,
+    .ema4wp-admin .available-fields button {
+      margin: 0 6px 6px 0; }
+    #ema4wp-admin .available-fields .is-required:after,
+    .ema4wp-admin .available-fields .is-required:after {
+      content: " *";
+      color: red; }
+    #ema4wp-admin .available-fields .is-required.not-in-form,
+    .ema4wp-admin .available-fields .is-required.not-in-form {
+      -webkit-box-shadow: 0 0 3px 1px red;
+      -moz-box-shadow: 0 0 3px 1px red;
+      box-shadow: 0 0 3px 1px red; }
+    #ema4wp-admin .available-fields .in-form,
+    .ema4wp-admin .available-fields .in-form {
+      opacity: 0.5; }
+  #ema4wp-admin .page-title,
+  .ema4wp-admin .page-title {
+    background: url("../img/logo-white-on-red.svg") no-repeat left center;
+    background-size: 32px;
+    padding-left: 42px;
+    line-height: 32px;
+    margin-bottom: 20px; }
+    #ema4wp-admin .page-title small,
+    .ema4wp-admin .page-title small {
+      font-size: 12px;
+      color: #777;
+      display: inline-block;
+      margin-left: 10px; }
+  #ema4wp-admin .page-title-action .dashicons,
+  #ema4wp-admin .button .dashicons,
+  #ema4wp-admin .button-secondary .dashicons,
+  .ema4wp-admin .page-title-action .dashicons,
+  .ema4wp-admin .button .dashicons,
+  .ema4wp-admin .button-secondary .dashicons {
+    vertical-align: middle;
+    line-height: 16px;
+    margin: 0 4px 0 0; }
+  #ema4wp-admin .form-table td p,
+  .ema4wp-admin .form-table td p {
+    margin-top: 1em; }
+  #ema4wp-admin .sidebar,
+  .ema4wp-admin .sidebar {
+    border-left: 1px solid #ccc; }
+  #ema4wp-admin .sidebar h3,
+  #ema4wp-admin .sidebar h4,
+  .ema4wp-admin .sidebar h3,
+  .ema4wp-admin .sidebar h4 {
+    font-size: 16px;
+    margin-bottom: 0; }
+  #ema4wp-admin .sidebar > div,
+  .ema4wp-admin .sidebar > div {
+    border-bottom: 1px solid #ccc;
+    margin-bottom: 20px;
+    padding-bottom: 20px; }
+    #ema4wp-admin .sidebar > div:last-of-type,
+    .ema4wp-admin .sidebar > div:last-of-type {
+      border-bottom: 0; }
+
+.ema4wp-log {
+  font-family: monaco, monospace, courier, 'courier new', 'Bitstream Vera Sans Mono';
+  font-size: 13px;
+  resize: vertical;
+  line-height: 140%;
+  height: 200px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  background: #262626;
+  color: white;
+  overflow-y: scroll; }
+
+.ema4wp-log .time {
+  color: #b58900; }
+
+.ema4wp-log .level {
+  color: #35AECD; }
+
+.ema4wp-log .debug-log-empty {
+  color: #ccc;
+  font-style: italic; }
+
+.ema4wp-log .hidden {
+  display: none; }
+
+.ema4wp-log a {
+  color: #ccc;
+  text-decoration: underline; }
+
+.ema4wp-overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999;
+  padding: 20px;
+  width: 100%;
+  max-width: 480px;
+  max-height: 100%;
+  background: #fefefe;
+  border: 1px solid #ccc;
+  overflow-y: scroll;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box; }
+  .ema4wp-overlay .close {
+    position: absolute;
+    padding: 10px;
+    right: 0;
+    top: 0;
+    font-size: 24px;
+    cursor: pointer;
+    opacity: 0.5; }
+    .ema4wp-overlay .close:hover, .ema4wp-overlay .close:focus {
+      opacity: 1; }
+
+.ema4wp-overlay-background {
+  z-index: 99998;
+  background: rgba(0, 0, 0, 0.67);
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0; }
+
+.rtl #ema4wp-admin .page-title {
+  background-position: right center;
+  padding-left: 0;
+  padding-right: 42px; }
+
+.rtl #ema4wp-admin .CodeMirror-scroll {
+  overflow-y: hidden !important; }
+
+.rtl #ema4wp-admin .CodeMirror-vscrollbar {
+  left: 0 !important;
+  right: auto !important; }
+
+.rtl .ema4wp-is-dismissible {
+  padding-left: 38px;
+  padding-right: initial;
+  position: relative; }
+
+.rtl .ema4wp-overlay .close {
+  right: auto;
+  left: 0; }
+
+.tlite {
+  background: #111;
+  color: white;
+  font-family: sans-serif;
+  font-size: 0.8rem;
+  font-weight: normal;
+  text-decoration: none;
+  text-align: left;
+  padding: 0.6em 0.75rem;
+  border-radius: 4px;
+  position: absolute;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.4s;
+  white-space: nowrap;
+  box-shadow: 0 0.5rem 1rem -0.5rem black;
+  z-index: 1000;
+  -webkit-backface-visibility: hidden; }
+
+.tlite-table td,
+.tlite-table th {
+  position: relative; }
+
+.tlite-visible {
+  visibility: visible;
+  opacity: 0.9; }
+
+.tlite::before {
+  content: ' ';
+  display: block;
+  background: inherit;
+  width: 10px;
+  height: 10px;
+  position: absolute;
+  transform: rotate(45deg); }
+
+.tlite-n::before {
+  top: -3px;
+  left: 50%;
+  margin-left: -5px; }
+
+.tlite-nw::before {
+  top: -3px;
+  left: 10px; }
+
+.tlite-ne::before {
+  top: -3px;
+  right: 10px; }
+
+.tlite-s::before {
+  bottom: -3px;
+  left: 50%;
+  margin-left: -5px; }
+
+.tlite-se::before {
+  bottom: -3px;
+  right: 10px; }
+
+.tlite-sw::before {
+  bottom: -3px;
+  left: 10px; }
+
+.tlite-w::before {
+  left: -3px;
+  top: 50%;
+  margin-top: -5px; }
+
+.tlite-e::before {
+  right: -3px;
+  top: 50%;
+  margin-top: -5px; }
