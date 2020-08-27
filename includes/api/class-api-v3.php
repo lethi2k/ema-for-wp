@@ -3,7 +3,8 @@
 /**
  * Class EMA4WP_API_V3
  */
-class EMA4WP_API_V3 {
+class EMA4WP_API_V3
+{
 
 	/**
 	 * @var EMA4WP_API_V3_Client
@@ -15,9 +16,11 @@ class EMA4WP_API_V3 {
 	 *
 	 * @param string $api_key
 	 */
-	public function __construct( $api_key ) {
-	    //lay key tu pubgin
-		$this->client = new EMA4WP_API_V3_Client( $api_key );
+	public function __construct($api_key)
+	{
+		//lay key tu pubgin
+		$this->client = new EMA4WP_API_V3_Client($api_key);
+		$this->get_lists();
 	}
 
 	/**
@@ -25,7 +28,8 @@ class EMA4WP_API_V3 {
 	 *
 	 * @return EMA4WP_API_V3_Client
 	 */
-	public function get_client() {
+	public function get_client()
+	{
 		return $this->client;
 	}
 
@@ -35,17 +39,18 @@ class EMA4WP_API_V3 {
 	 * @return boolean
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function is_connected() {
+	public function is_connected()
+	{
 
-	    //du lieu lay tu api lists
-		$data = $this->client->get( '/lists' , array( 'uid' => 'account_id' ) );
+		//du lieu lay tu api lists
+		$data = $this->client->get('/lists', array('uid' => 'account_id'));
 
 		//tim xem co uid hay khong neu khong return false
-
-		foreach ($data as $val){
-            $connected = is_object( $val ) && isset( $val->uid );
-            break;
-        }
+		foreach ($data as $val) {
+			$connected = is_object($val) && isset($val->id);
+			//var_dump( $val->id);
+			break;
+		}
 		//tra ve true or false
 		return $connected;
 	}
@@ -55,113 +60,120 @@ class EMA4WP_API_V3 {
 	 *
 	 * @return string
 	 */
-	public function get_subscriber_hash( $email_address ) {
-		return md5( strtolower( trim( $email_address ) ) );
+	
+	public function get_subscriber_hash($email_address)
+	{
+		return md5(strtolower(trim($email_address)));
 	}
 
 	/**
 	 * Get recent daily, aggregated activity stats for a list.
 	 *
-	 * @link https://developer.zozoema.com/documentation/zozoema/reference/lists/activity/#read-get_lists_list_id_activity
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/activity/#read-get_lists_list_id_activity
 	 *
 	 * @param string $list_id
 	 * @param array $args
 	 *
 	 * @return array
-	 * @throws EMA4WP_API_Exception
+	 * @throws MC4WP_API_Exception
 	 */
-	public function get_list_activity( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists/%s', $list_id );
-		$data     = $this->client->get( $resource, $args );
+	
+    public function get_list_activity($list_id, array $args = array())
+    {
+        $resource = sprintf('/lists/%s/activity', $list_id);
+        $data     = $this->client->get($resource, $args);
 
-		if ( is_object( $data ) && isset( $data->activity ) ) {
-			return $data->activity;
-		}
+        if (is_object($data) && isset($data->activity)) {
+            return $data->activity;
+        }
 
-		return array();
-	}
+        return array();
+    }
 
-	/**
-	 * Gets the interest categories for a given List
-	 *
-	 * @link https://developer.zozoema.com/documentation/zozoema/reference/lists/interest-categories/#read-get_lists_list_id_interest_categories
-	 *
-	 * @param string $list_id
-	 * @param array $args
-	 *
-	 * @return array
-	 * @throws EMA4WP_API_Exception
-	 */
-	public function get_list_interest_categories( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists/%s', $list_id );
-		$data     = $this->client->get( $resource, $args );
-        var_dump($data);
-		if ( is_object( $data ) && isset( $data->categories ) ) {
-			return $data->categories;
-		}
+    /**
+     * Gets the interest categories for a given List
+     *
+     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/#read-get_lists_list_id_interest_categories
+     *
+     * @param string $list_id
+     * @param array $args
+     *
+     * @return array
+     * @throws MC4WP_API_Exception
+     */
+    public function get_list_interest_categories($list_id, array $args = array())
+    {
+        $resource = sprintf('/lists/%s/interest-categories', $list_id);
+        $data     = $this->client->get($resource, $args);
 
-		return array();
-	}
+        if (is_object($data) && isset($data->categories)) {
+            return $data->categories;
+        }
 
-	/**
-	 * @link https://developer.zozoema.com/documentation/zozoema/reference/lists/interest-categories/interests/#read-get_lists_list_id_interest_categories_interest_category_id_interests
-	 *
-	 * @param string $list_id
-	 * @param string $interest_category_id
-	 * @param array $args
-	 *
-	 * @return array
-	 * @throws EMA4WP_API_Exception
-	 */
-	public function get_list_interest_category_interests( $list_id, $interest_category_id, array $args = array() ) {
-		$resource = sprintf( '/lists/%s', $list_id, $interest_category_id );
-		$data     = $this->client->get( $resource, $args );
+        return array();
+    }
 
-		if ( is_object( $data ) && isset( $data->interests ) ) {
-			return $data->interests;
-		}
+    /**
+     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/interests/#read-get_lists_list_id_interest_categories_interest_category_id_interests
+     *
+     * @param string $list_id
+     * @param string $interest_category_id
+     * @param array $args
+     *
+     * @return array
+     * @throws MC4WP_API_Exception
+     */
+    public function get_list_interest_category_interests($list_id, $interest_category_id, array $args = array())
+    {
+        $resource = sprintf('/lists/%s/interest-categories/%s/interests', $list_id, $interest_category_id);
+        $data     = $this->client->get($resource, $args);
 
-		return array();
-	}
+        if (is_object($data) && isset($data->interests)) {
+            return $data->interests;
+        }
 
-	/**
-	 * Get merge vars for a given list
-	 *
-	 * @link https://developer.zozoema.com/documentation/zozoema/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
-	 *
-	 * @param string $list_id
-	 * @param array $args
-	 *
-	 * @return array
-	 * @throws EMA4WP_API_Exception
-	 */
-	public function get_list_merge_fields( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists/%s', $list_id );
-		$data     = $this->client->get( $resource, $args );
+        return array();
+    }
 
-		if ( is_object( $data ) && isset( $data->merge_fields ) ) {
-			return $data->merge_fields;
-		}
+    /**
+     * Get merge vars for a given list
+     *
+     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
+     *
+     * @param string $list_id
+     * @param array $args
+     *
+     * @return array
+     * @throws MC4WP_API_Exception
+     */
+    public function get_list_merge_fields($list_id, array $args = array())
+    {
+        $resource = sprintf('/lists/%s', $list_id);
+        $data     = $this->client->get($resource, $args);
+        if (is_object($data) && isset($data->merge_fields)) {
+            return $data->merge_fields;
+        }
 
-		return array();
-	}
+        return array();
+    }
 
-	/**
-	 * @link https://developer.zozoema.com/documentation/zozoema/reference/lists/#read-get_lists_list_id
-	 *
-	 * @param string $list_id
-	 * @param array $args
-	 *
-	 * @return object
-	 * @throws EMA4WP_API_Exception
-	 */
-	public function get_list( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists/%s', $list_id );
-		$data     = $this->client->get( $resource, $args );
-		return $data;
-	}
-
-	/**
+    /**
+     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/#read-get_lists_list_id
+     *
+     * @param string $list_id
+     * @param array $args
+     *
+     * @return object
+     * @throws MC4WP_API_Exception
+     */
+    public function get_list($list_id, array $args = array())
+    {
+        $resource = sprintf('/lists/%s', $list_id);
+        $data     = $this->client->get($resource, $args);
+        return $data;
+    }
+    
+    /**
 	 * @link https://developer.zozoema.com/documentation/zozoema/reference/lists/#read-get_lists
 	 *
 	 * @param array $args
@@ -169,15 +181,16 @@ class EMA4WP_API_V3 {
 	 * @return array
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_lists( array $args = array() ) {
-        $resource = '/lists';
-        $data     = $this->client->get( $resource, $args );
-        foreach ($data as $val){
-            if ( is_object( $val ) && isset( $val ) ) {
-                return $val;
-            }
-        }
-        return array();
+	public function get_lists(array $args = array())
+	{
+		$resource = '/lists';
+		$data     = $this->client->get($resource, $args);
+		foreach ($data as $val) {
+			if (is_object($val) && isset($val)) {
+				return $data;
+			}
+		}
+		return array();
 	}
 
 
@@ -191,11 +204,18 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_list_member( $list_id, $email_address, array $args = array() ) {
-		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/api/v1/lists/%s/subscribers', $list_id, $subscriber_hash );
-		$data            = $this->client->get( $resource, $args );
-		return $data;
+	public function get_list_member($list_id, $email_address, array $args = array())
+	{
+		
+		$subscriber_hash = $this->get_subscriber_hash($email_address);
+		
+		$resource        = sprintf('/api/v1/lists/%s/subscribers/%s', $list_id, $subscriber_hash);
+		$data            = $this->client->get($resource, $args);
+		echo "<pre>";
+		print_r($data);
+		echo "</pre>";
+		die('kết thúc');
+		
 	}
 
 	/**
@@ -208,9 +228,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_list_members( $list_id, array $args ) {
-		$resource = sprintf( '/lists/%s/subscribers/store', $list_id );
-		return $this->client->post( $resource, $args );
+	public function add_list_members($list_id, array $args)
+	{
+		$resource = sprintf('/lists/%s/subscribers/store', $list_id);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -224,24 +245,26 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_new_list_member( $list_id, array $args ) {
+	public function add_new_list_member($list_id, array $args)
+	{
 
-//        $fp = fopen('data.txt', 'w');//mở file ở chế độ write-only
-//        fwrite($fp, $list_id);
-//        fclose($fp);
+		//        $fp = fopen('data.txt', 'w');//mở file ở chế độ write-only
+		//        fwrite($fp, $list_id);
+		//        fclose($fp);
 
-		$resource = sprintf( '/lists/%s/subscribers/store', $list_id );
-        // make sure we're sending an object as the ZozoEMA schema requires this
-		if ( isset( $args['merge_fields'] ) ) {
+		$resource = sprintf('/lists/%s/subscribers/store', $list_id);
+		// make sure we're sending an object as the ZozoEMA schema requires this
+		if (isset($args['merge_fields'])) {
 			$args['merge_fields'] = (object) $args['merge_fields'];
 		}
-		if ( isset( $args['interests'] ) ) {
+		if (isset($args['interests'])) {
 			$args['interests'] = (object) $args['interests'];
 		}
 		// "put" updates the member if it's already on the list... take notice
-        $parts = explode("@", $args['email_address']);
-        $name = $parts[0];
-		$data = $this->client->post( $resource, array('EMAIL' => $args['email_address'],'FIRST_NAME' => $name) );
+//		$parts = explode("@", $args['email_address']);
+//		$name = $parts[0];
+
+		$data = $this->client->post($resource, array('EMAIL' => $args['email_address'],$args));
 		return $data;
 	}
 
@@ -257,25 +280,26 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_list_member( $list_id, array $args, $skip_merge_validation = false ) {
-		$subscriber_hash = $this->get_subscriber_hash( $args['email_address'] );
-		$resource        = sprintf( '/lists/5f2bd7d6b0d55/subscribers/store', $list_id, $subscriber_hash );
+	public function add_list_member($list_id, array $args, $skip_merge_validation = false)
+	{
+		$subscriber_hash = $this->get_subscriber_hash($args['email_address']);
+		$resource        = sprintf('/lists/%s/subscribers/store', $list_id, $subscriber_hash);
 
-		if ( $skip_merge_validation ) {
-			$resource = add_query_arg( array( 'skip_merge_validation' => 'true' ), $resource );
+		if ($skip_merge_validation) {
+			$resource = add_query_arg(array('skip_merge_validation' => 'true'), $resource);
 		}
 
 		// make sure we're sending an object as the ZozoEMA schema requires this
-		if ( isset( $args['merge_fields'] ) ) {
+		if (isset($args['merge_fields'])) {
 			$args['merge_fields'] = (object) $args['merge_fields'];
 		}
 
-		if ( isset( $args['interests'] ) ) {
+		if (isset($args['interests'])) {
 			$args['interests'] = (object) $args['interests'];
 		}
 
 		// "put" updates the member if it's already on the list... take notice
-		$data = $this->client->put( $resource, $args );
+		$data = $this->client->put($resource, $args);
 		return $data;
 	}
 
@@ -289,19 +313,20 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_list_member( $list_id, $email_address, array $args ) {
-		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/lists/%s/subscribers', $list_id, $subscriber_hash );
+	public function update_list_member($list_id, $email_address, array $args)
+	{
+		$subscriber_hash = $this->get_subscriber_hash($email_address);
+		$resource        = sprintf('/lists/%s/subscribers', $list_id, $subscriber_hash);
 
 		// make sure we're sending an object as the ZozoEMA schema requires this
-		if ( isset( $args['merge_fields'] ) ) {
+		if (isset($args['merge_fields'])) {
 			$args['merge_fields'] = (object) $args['merge_fields'];
 		}
 
-		if ( isset( $args['interests'] ) ) {
+		if (isset($args['interests'])) {
 			$args['interests'] = (object) $args['interests'];
 		}
-		$data = $this->client->patch( $resource, $args );
+		$data = $this->client->patch($resource, $args);
 		return $data;
 	}
 
@@ -314,11 +339,12 @@ class EMA4WP_API_V3 {
 	 * @return bool
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_list_member( $list_id, $email_address ) {
-		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/lists/%s/subscribers/{uid}/delete', $list_id, $subscriber_hash );
-		$data            = $this->client->delete( $resource );
-		return ! ! $data;
+	public function delete_list_member($list_id, $email_address)
+	{
+		$subscriber_hash = $this->get_subscriber_hash($email_address);
+		$resource        = sprintf('/lists/%s/subscribers/5f46068b86f9b/delete', $list_id, $subscriber_hash);
+		$data            = $this->client->delete($resource);
+		return !!$data;
 	}
 
 	/**
@@ -330,10 +356,11 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_list_member_tags( $list_id, $email_address ) {
-		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/lists/%s/members/%s/tags', $list_id, $subscriber_hash );
-		return $this->client->get( $resource );
+	public function get_list_member_tags($list_id, $email_address)
+	{
+		$subscriber_hash = $this->get_subscriber_hash($email_address);
+		$resource        = sprintf('/lists/%s/members/%s/tags', $list_id, $subscriber_hash);
+		return $this->client->get($resource);
 	}
 
 	/**
@@ -346,10 +373,11 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_list_member_tags( $list_id, $email_address, array $data ) {
-		$subscriber_hash = $this->get_subscriber_hash( $email_address );
-		$resource        = sprintf( '/lists/%s/members/%s/tags', $list_id, $subscriber_hash );
-		return $this->client->post( $resource, $data );
+	public function update_list_member_tags($list_id, $email_address, array $data)
+	{
+		$subscriber_hash = $this->get_subscriber_hash($email_address);
+		$resource        = sprintf('/lists/%s/members/%s/tags', $list_id, $subscriber_hash);
+		return $this->client->post($resource, $data);
 	}
 
 	/**
@@ -361,9 +389,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_list_segments( $list_id, array $args = array() ) {
-		$resource = sprintf( '/lists/%s/segments', $list_id );
-		return $this->client->get( $resource, $args );
+	public function get_list_segments($list_id, array $args = array())
+	{
+		$resource = sprintf('/lists/%s/segments', $list_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -374,9 +403,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_stores( array $args = array() ) {
+	public function get_ecommerce_stores(array $args = array())
+	{
 		$resource = '/ecommerce/stores';
-		return $this->client->get( $resource, $args );
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -388,9 +418,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store( $store_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s', $store_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store($store_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s', $store_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -401,9 +432,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store( array $args ) {
+	public function add_ecommerce_store(array $args)
+	{
 		$resource = '/ecommerce/stores';
-		return $this->client->post( $resource, $args );
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -415,9 +447,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store( $store_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s', $store_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store($store_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s', $store_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -428,9 +461,10 @@ class EMA4WP_API_V3 {
 	 * @return boolean
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store( $store_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s', $store_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store($store_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s', $store_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -442,9 +476,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_customers( $store_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/customers', $store_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_customers($store_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/customers', $store_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -457,9 +492,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_customer( $store_id, $customer_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/customers/%s', $store_id, $customer_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_customer($store_id, $customer_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/customers/%s', $store_id, $customer_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -473,9 +509,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_customer( $store_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/customers/%s', $store_id, $args['id'] );
-		return $this->client->put( $resource, $args );
+	public function add_ecommerce_store_customer($store_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/customers/%s', $store_id, $args['id']);
+		return $this->client->put($resource, $args);
 	}
 
 	/**
@@ -488,9 +525,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_customer( $store_id, $customer_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/customers/%s', $store_id, $customer_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_customer($store_id, $customer_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/customers/%s', $store_id, $customer_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -502,9 +540,10 @@ class EMA4WP_API_V3 {
 	 * @return bool
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_customer( $store_id, $customer_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s/customers/%s', $store_id, $customer_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store_customer($store_id, $customer_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/customers/%s', $store_id, $customer_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -516,9 +555,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_products( $store_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products', $store_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_products($store_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products', $store_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -531,9 +571,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_product( $store_id, $product_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s', $store_id, $product_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_product($store_id, $product_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s', $store_id, $product_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -547,9 +588,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_product( $store_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products', $store_id );
-		return $this->client->post( $resource, $args );
+	public function add_ecommerce_store_product($store_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products', $store_id);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -562,9 +604,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_product( $store_id, $product_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s', $store_id, $product_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_product($store_id, $product_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s', $store_id, $product_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -576,9 +619,10 @@ class EMA4WP_API_V3 {
 	 * @return boolean
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_product( $store_id, $product_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s', $store_id, $product_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store_product($store_id, $product_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s', $store_id, $product_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -591,9 +635,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_product_variants( $store_id, $product_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s/variants', $store_id, $product_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_product_variants($store_id, $product_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s/variants', $store_id, $product_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -607,9 +652,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_product_variant( $store_id, $product_id, $variant_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $variant_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_product_variant($store_id, $product_id, $variant_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $variant_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -624,9 +670,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_product_variant( $store_id, $product_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $args['id'] );
-		return $this->client->put( $resource, $args );
+	public function add_ecommerce_store_product_variant($store_id, $product_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $args['id']);
+		return $this->client->put($resource, $args);
 	}
 
 	/**
@@ -640,9 +687,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_product_variant( $store_id, $product_id, $variant_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $variant_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_product_variant($store_id, $product_id, $variant_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $variant_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -655,9 +703,10 @@ class EMA4WP_API_V3 {
 	 * @return boolean
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_product_variant( $store_id, $product_id, $variant_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $variant_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store_product_variant($store_id, $product_id, $variant_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/products/%s/variants/%s', $store_id, $product_id, $variant_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -669,9 +718,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_orders( $store_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders', $store_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_orders($store_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders', $store_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -684,9 +734,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_order( $store_id, $order_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders/%s', $store_id, $order_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_order($store_id, $order_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders/%s', $store_id, $order_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -698,9 +749,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_order( $store_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders', $store_id );
-		return $this->client->post( $resource, $args );
+	public function add_ecommerce_store_order($store_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders', $store_id);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -713,9 +765,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_order( $store_id, $order_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders/%s', $store_id, $order_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_order($store_id, $order_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders/%s', $store_id, $order_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -727,8 +780,9 @@ class EMA4WP_API_V3 {
 	 * @return bool
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_order( $store_id, $order_id ) {
-		return ! ! $this->client->delete( sprintf( '/ecommerce/stores/%s/orders/%s', $store_id, $order_id ) );
+	public function delete_ecommerce_store_order($store_id, $order_id)
+	{
+		return !!$this->client->delete(sprintf('/ecommerce/stores/%s/orders/%s', $store_id, $order_id));
 	}
 
 	/**
@@ -741,9 +795,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_order_line( $store_id, $order_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders/%s/lines', $store_id, $order_id );
-		return $this->client->post( $resource, $args );
+	public function add_ecommerce_store_order_line($store_id, $order_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders/%s/lines', $store_id, $order_id);
+		return $this->client->post($resource, $args);
 	}
 
 
@@ -757,9 +812,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_order_lines( $store_id, $order_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders/%s/lines', $store_id, $order_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_order_lines($store_id, $order_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders/%s/lines', $store_id, $order_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -773,9 +829,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_order_line( $store_id, $order_id, $line_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders/%s/lines/%s', $store_id, $order_id, $line_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_order_line($store_id, $order_id, $line_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders/%s/lines/%s', $store_id, $order_id, $line_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -789,9 +846,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_order_line( $store_id, $order_id, $line_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders/%s/lines/%s', $store_id, $order_id, $line_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_order_line($store_id, $order_id, $line_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders/%s/lines/%s', $store_id, $order_id, $line_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -804,9 +862,10 @@ class EMA4WP_API_V3 {
 	 * @return bool
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_order_line( $store_id, $order_id, $line_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s/orders/%s/lines/%s', $store_id, $order_id, $line_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store_order_line($store_id, $order_id, $line_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/orders/%s/lines/%s', $store_id, $order_id, $line_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -818,9 +877,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_carts( $store_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts', $store_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_carts($store_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts', $store_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -833,9 +893,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_cart( $store_id, $cart_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%s', $store_id, $cart_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_cart($store_id, $cart_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts/%s', $store_id, $cart_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -847,9 +908,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_cart( $store_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts', $store_id );
-		return $this->client->post( $resource, $args );
+	public function add_ecommerce_store_cart($store_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts', $store_id);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -862,9 +924,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_cart( $store_id, $cart_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%s', $store_id, $cart_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_cart($store_id, $cart_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts/%s', $store_id, $cart_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -875,8 +938,9 @@ class EMA4WP_API_V3 {
 	 *
 	 * @return bool
 	 */
-	public function delete_ecommerce_store_cart( $store_id, $cart_id ) {
-		return ! ! $this->client->delete( sprintf( '/ecommerce/stores/%s/carts/%s', $store_id, $cart_id ) );
+	public function delete_ecommerce_store_cart($store_id, $cart_id)
+	{
+		return !!$this->client->delete(sprintf('/ecommerce/stores/%s/carts/%s', $store_id, $cart_id));
 	}
 
 	/**
@@ -889,9 +953,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_cart_lines( $store_id, $cart_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%/lines', $store_id, $cart_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_cart_lines($store_id, $cart_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts/%/lines', $store_id, $cart_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -905,9 +970,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_cart_line( $store_id, $cart_id, $line_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%s/lines/%s', $store_id, $cart_id, $line_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_cart_line($store_id, $cart_id, $line_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts/%s/lines/%s', $store_id, $cart_id, $line_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -920,9 +986,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_cart_line( $store_id, $cart_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%s/lines', $store_id, $cart_id );
-		return $this->client->post( $resource, $args );
+	public function add_ecommerce_store_cart_line($store_id, $cart_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts/%s/lines', $store_id, $cart_id);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -936,9 +1003,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_cart_line( $store_id, $cart_id, $line_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%s/lines/%s', $store_id, $cart_id, $line_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_cart_line($store_id, $cart_id, $line_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts/%s/lines/%s', $store_id, $cart_id, $line_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -951,9 +1019,10 @@ class EMA4WP_API_V3 {
 	 * @return bool
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_cart_line( $store_id, $cart_id, $line_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s/carts/%s/lines/%s', $store_id, $cart_id, $line_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store_cart_line($store_id, $cart_id, $line_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/carts/%s/lines/%s', $store_id, $cart_id, $line_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -965,9 +1034,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_promo_rule( $store_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules', $store_id );
-		return $this->client->post( $resource, $args );
+	public function add_ecommerce_store_promo_rule($store_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules', $store_id);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -979,9 +1049,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_promo_rules( $store_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules', $store_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_promo_rules($store_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules', $store_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -994,9 +1065,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_promo_rule( $store_id, $promo_rule_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s', $store_id, $promo_rule_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_promo_rule($store_id, $promo_rule_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s', $store_id, $promo_rule_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1009,9 +1081,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_promo_rule( $store_id, $promo_rule_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s', $store_id, $promo_rule_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_promo_rule($store_id, $promo_rule_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s', $store_id, $promo_rule_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -1023,9 +1096,10 @@ class EMA4WP_API_V3 {
 	 * @return boolean
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_promo_rule( $store_id, $promo_rule_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s', $store_id, $promo_rule_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store_promo_rule($store_id, $promo_rule_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s', $store_id, $promo_rule_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -1038,9 +1112,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_ecommerce_store_promo_rule_promo_code( $store_id, $promo_rule_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s/promo-codes', $store_id, $promo_rule_id );
-		return $this->client->post( $resource, $args );
+	public function add_ecommerce_store_promo_rule_promo_code($store_id, $promo_rule_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s/promo-codes', $store_id, $promo_rule_id);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -1053,9 +1128,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_promo_rule_promo_codes( $store_id, $promo_rule_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s/promo-codes', $store_id, $promo_rule_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_promo_rule_promo_codes($store_id, $promo_rule_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s/promo-codes', $store_id, $promo_rule_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1069,9 +1145,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_ecommerce_store_promo_rule_promo_code( $store_id, $promo_rule_id, $promo_code_id, array $args = array() ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s/promo-codes/%s', $store_id, $promo_rule_id, $promo_code_id );
-		return $this->client->get( $resource, $args );
+	public function get_ecommerce_store_promo_rule_promo_code($store_id, $promo_rule_id, $promo_code_id, array $args = array())
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s/promo-codes/%s', $store_id, $promo_rule_id, $promo_code_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1085,9 +1162,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_ecommerce_store_promo_rule_promo_code( $store_id, $promo_rule_id, $promo_code_id, array $args ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s/promo-codes/%s', $store_id, $promo_rule_id, $promo_code_id );
-		return $this->client->patch( $resource, $args );
+	public function update_ecommerce_store_promo_rule_promo_code($store_id, $promo_rule_id, $promo_code_id, array $args)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s/promo-codes/%s', $store_id, $promo_rule_id, $promo_code_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -1100,9 +1178,10 @@ class EMA4WP_API_V3 {
 	 * @return boolean
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_ecommerce_store_promo_rule_promo_code( $store_id, $promo_rule_id, $promo_code_id ) {
-		$resource = sprintf( '/ecommerce/stores/%s/promo-rules/%s/promo-codes/%s', $store_id, $promo_rule_id, $promo_code_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_ecommerce_store_promo_rule_promo_code($store_id, $promo_rule_id, $promo_code_id)
+	{
+		$resource = sprintf('/ecommerce/stores/%s/promo-rules/%s/promo-codes/%s', $store_id, $promo_rule_id, $promo_code_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -1113,9 +1192,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_templates( array $args = array() ) {
+	public function get_templates(array $args = array())
+	{
 		$resource = '/templates';
-		return $this->client->get( $resource, $args );
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1127,9 +1207,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_template( $template_id, array $args = array() ) {
-		$resource = sprintf( '/templates/%s', $template_id );
-		return $this->client->get( $resource, $args );
+	public function get_template($template_id, array $args = array())
+	{
+		$resource = sprintf('/templates/%s', $template_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1140,9 +1221,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_template( array $args ) {
+	public function add_template(array $args)
+	{
 		$resource = '/templates';
-		return $this->client->post( $resource, $args );
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -1152,9 +1234,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_template_default_content( $template_id, array $args = array() ) {
-		$resource = sprintf( '/templates/%s/default-content', $template_id );
-		return $this->client->get( $resource, $args );
+	public function get_template_default_content($template_id, array $args = array())
+	{
+		$resource = sprintf('/templates/%s/default-content', $template_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1165,9 +1248,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function add_campaign( array $args ) {
+	public function add_campaign(array $args)
+	{
 		$resource = '/campaigns';
-		return $this->client->post( $resource, $args );
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -1178,9 +1262,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_campaigns( array $args = array() ) {
+	public function get_campaigns(array $args = array())
+	{
 		$resource = '/campaigns';
-		return $this->client->get( $resource, $args );
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1192,9 +1277,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_campaign( $campaign_id, array $args = array() ) {
-		$resource = sprintf( '/campaigns/%s', $campaign_id );
-		return $this->client->get( $resource, $args );
+	public function get_campaign($campaign_id, array $args = array())
+	{
+		$resource = sprintf('/campaigns/%s', $campaign_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1206,9 +1292,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_campaign( $campaign_id, array $args ) {
-		$resource = sprintf( '/campaigns/%s', $campaign_id );
-		return $this->client->patch( $resource, $args );
+	public function update_campaign($campaign_id, array $args)
+	{
+		$resource = sprintf('/campaigns/%s', $campaign_id);
+		return $this->client->patch($resource, $args);
 	}
 
 	/**
@@ -1219,9 +1306,10 @@ class EMA4WP_API_V3 {
 	 * @return bool
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function delete_campaign( $campaign_id ) {
-		$resource = sprintf( '/campaigns/%s', $campaign_id );
-		return ! ! $this->client->delete( $resource );
+	public function delete_campaign($campaign_id)
+	{
+		$resource = sprintf('/campaigns/%s', $campaign_id);
+		return !!$this->client->delete($resource);
 	}
 
 	/**
@@ -1235,9 +1323,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function campaign_action( $campaign_id, $action, array $args = array() ) {
-		$resource = sprintf( '/campaigns/%s/actions/%s', $campaign_id, $action );
-		return $this->client->post( $resource, $args );
+	public function campaign_action($campaign_id, $action, array $args = array())
+	{
+		$resource = sprintf('/campaigns/%s/actions/%s', $campaign_id, $action);
+		return $this->client->post($resource, $args);
 	}
 
 	/**
@@ -1249,9 +1338,10 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function get_campaign_content( $campaign_id, array $args = array() ) {
-		$resource = sprintf( '/campaigns/%s/content', $campaign_id );
-		return $this->client->get( $resource, $args );
+	public function get_campaign_content($campaign_id, array $args = array())
+	{
+		$resource = sprintf('/campaigns/%s/content', $campaign_id);
+		return $this->client->get($resource, $args);
 	}
 
 	/**
@@ -1263,22 +1353,25 @@ class EMA4WP_API_V3 {
 	 * @return object
 	 * @throws EMA4WP_API_Exception
 	 */
-	public function update_campaign_content( $campaign_id, array $args ) {
-		$resource = sprintf( '/campaigns/%s/content', $campaign_id );
-		return $this->client->put( $resource, $args );
+	public function update_campaign_content($campaign_id, array $args)
+	{
+		$resource = sprintf('/campaigns/%s/content', $campaign_id);
+		return $this->client->put($resource, $args);
 	}
 
 	/**
 	 * @return string
 	 */
-	public function get_last_response_body() {
+	public function get_last_response_body()
+	{
 		return $this->client->get_last_response_body();
 	}
 
 	/**
 	 * @return array
 	 */
-	public function get_last_response_headers() {
+	public function get_last_response_headers()
+	{
 		return $this->client->get_last_response_headers();
 	}
 }

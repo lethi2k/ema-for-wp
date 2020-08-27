@@ -11,13 +11,13 @@ class EMA4WP_ZozoEMA_Subscriber {
 	/**
 	 * @var array The key of this object’s properties is the ID of the interest in question.
 	 */
-//	public $interests = array();
+	public $interests = array();
     public $LAST_NAME = 'no name';
 	/**
 	 * @var array An individual merge var and value for a member.
 	 */
-//	public $merge_fields = array();
-//    public $FIRST_NAME = 'no name';
+	public $merge_fields = array();
+    public $FIRST_NAME = '';
 
 	/**
 	 * @var string Subscriber’s status.

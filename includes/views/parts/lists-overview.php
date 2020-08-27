@@ -25,7 +25,7 @@
 
 		$headings = array(
 			esc_html__( 'List Name', 'zozoema-for-wp' ),
-			esc_html__( 'UID', 'zozoema-for-wp' ),
+			esc_html__( 'ID', 'zozoema-for-wp' ),
 			esc_html__( 'Email Subscribers', 'zozoema-for-wp' ),
 		);
 
@@ -39,17 +39,17 @@
 
 		foreach ( $lists as $list ) {
 			echo '<tr>';
-			echo sprintf( '<td><a href="#" class="ema4wp-zozoema-list" data-list-id="%s">%s</a><span class="row-actions alignright"></span></td>', esc_attr( $list->uid ), esc_html( $list->name ) );
-			echo sprintf( '<td><code>%s</code></td>', esc_html( $list->uid ) );
-			echo sprintf( '<td>%s</td>', esc_html( $list->default_subject ) );
-			echo '</tr>';
+            echo sprintf( '<td><a href="#" class="ema4wp-zozoema-list" data-list-id="%s">%s</a><span class="row-actions alignright"></span></td>', esc_attr( $list->uid ), esc_html( $list->name ) );
+            echo sprintf( '<td><code>%s</code></td>', esc_html( $list->uid ) );
+            echo sprintf( '<td>%s </td>', esc_html( $list->default_subject ) );
+            echo '</tr>';
 
-			echo sprintf( '<tr class="list-details list-%s-details" style="display: none;">', $list->uid );
-			echo '<td colspan="3" style="padding: 0 20px 40px;">';
+            echo sprintf( '<tr class="list-details list-%s-details" style="display: none;">', $list->uid );
+            echo '<td colspan="3" style="padding: 0 20px 40px;">';
 
-			echo sprintf( '<p class="alignright" style="margin: 20px 0;"><a href="https://admin.zozoema.com/lists/members/?id=%s" target="_blank"><span class="dashicons dashicons-edit"></span> ' . esc_html__( 'Edit this list in ZozoEMA', 'zozoema-for-wp' ) . '</a></p>', $list->uid );
-			echo '<div><div>', esc_html__( 'Loading... Please wait.', 'zozoema-for-wp' ) , '</div></div>';
-			echo '</td>';
+            echo sprintf( '<p class="alignright" style="margin: 20px 0;"><a href="https://admin.zozoema.com/lists/members/?id=%s" target="_blank"><span class="dashicons dashicons-edit"></span> ' . esc_html__( 'Edit this list in ZozoEMA', 'zozoema-for-wp' ) . '</a></p>', $list->uid );
+            echo '<div><div>', esc_html__( 'Loading... Please wait.', 'zozoema-for-wp' ) , '</div></div>';
+            echo '</td>';
 			echo '</tr>';
 			?>
 			<?php

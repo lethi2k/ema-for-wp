@@ -124,7 +124,8 @@ class EMA4WP_Admin_Ads {
 			<div id="mc_embed_signup">
 				<h4 class="ema4wp-title"><?php _e( 'More subscribers, better newsletters.', 'zozoema-for-wp' ); ?></h4>
 				<p><?php _e( 'Learn how to best grow your lists & write better emails by subscribing to our monthly tips.', 'zozoema-for-wp' ); ?></p>
-				<form action="//ema4wp.us1.list-manage.com/subscribe/post?u=a2d08947dcd3683512ce174c5&amp;id=a940232df9" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+<!--                action="//ema4wp.us1.list-manage.com/subscribe/post?u=a2d08947dcd3683512ce174c5&amp;id=a940232df9"-->
+				<form  method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
 					<p>
 						<label for="ema4wp-email"><?php _e( 'Email Address', 'zozoema-for-wp' ); ?></label>
 						<input type="email" value="<?php echo esc_attr( $user->user_email ); ?>" name="EMAIL" class="regular-text" id="ema4wp-email" required>

@@ -45,7 +45,7 @@ function _ema4wp_load_plugin() {
 	}
 
 	// bootstrap the core plugin
-	define( 'EMA4WP_VERSION', '1.0.1' );
+	define( 'EMA4WP_VERSION', '4.8' );
 	define( 'EMA4WP_PLUGIN_DIR', __DIR__ . '/' );
 	define( 'EMA4WP_PLUGIN_URL', plugins_url( '/', __FILE__ ) );
 	define( 'EMA4WP_PLUGIN_FILE', __FILE__ );
