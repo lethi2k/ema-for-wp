@@ -39,7 +39,7 @@ class EMA4WP_ZozoEMA
 		$this->reset_error();
 		$default_args         = array(
 			'status'        => 'pending',
-			'email_address' => $email_address,
+			'EMAIL' => $email_address,
 		);
 		$existing_member_data = null;
 

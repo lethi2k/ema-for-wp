@@ -1,23 +1,23 @@
 <?php
 
-class EMA4WP_ZozoEMA_Subscriber {
+class EMA4WP_ZozoEMA_Subscriber
+{
 
 
 	/**
 	 * @var string Email address for this subscriber.
 	 */
-	public $EMAIL = '';
+	public $email_address = '';
 
 	/**
 	 * @var array The key of this object’s properties is the ID of the interest in question.
 	 */
 	public $interests = array();
-    public $LAST_NAME = 'no name';
+
 	/**
 	 * @var array An individual merge var and value for a member.
 	 */
 	public $merge_fields = array();
-    public $FIRST_NAME = '';
 
 	/**
 	 * @var string Subscriber’s status.
@@ -47,19 +47,20 @@ class EMA4WP_ZozoEMA_Subscriber {
 	/**
 	 * @var array The tags applied to this member.
 	 */
-//	public $tags = array();
+	public $tags = array();
 
 	/**
 	 * Retrieves member data as an array, without null values.
 	 *
 	 * @return array
 	 */
-	public function to_array() {
-		$array = get_object_vars( $this );
+	public function to_array()
+	{
+		$array = get_object_vars($this);
 
 		// filter out null values
-		$null_values = array_filter( $array, 'is_null' );
-		$values      = array_diff_key( $array, $null_values );
+		$null_values = array_filter($array, 'is_null');
+		$values      = array_diff_key($array, $null_values);
 
 		return $values;
 	}

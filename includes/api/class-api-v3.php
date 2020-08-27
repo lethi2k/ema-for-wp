@@ -60,7 +60,7 @@ class EMA4WP_API_V3
 	 *
 	 * @return string
 	 */
-	
+
 	public function get_subscriber_hash($email_address)
 	{
 		return md5(strtolower(trim($email_address)));
@@ -77,103 +77,107 @@ class EMA4WP_API_V3
 	 * @return array
 	 * @throws MC4WP_API_Exception
 	 */
-	
-    public function get_list_activity($list_id, array $args = array())
-    {
-        $resource = sprintf('/lists/%s/activity', $list_id);
-        $data     = $this->client->get($resource, $args);
 
-        if (is_object($data) && isset($data->activity)) {
-            return $data->activity;
-        }
+	public function get_list_activity($list_id, array $args = array())
+	{
+		$resource = sprintf('/lists/%s/activity', $list_id);
+		$data     = $this->client->get($resource, $args);
+		if (is_object($data) && isset($data->activity)) {
+			return $data->activity;
+		}
 
-        return array();
-    }
+		return array();
+	}
 
-    /**
-     * Gets the interest categories for a given List
-     *
-     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/#read-get_lists_list_id_interest_categories
-     *
-     * @param string $list_id
-     * @param array $args
-     *
-     * @return array
-     * @throws MC4WP_API_Exception
-     */
-    public function get_list_interest_categories($list_id, array $args = array())
-    {
-        $resource = sprintf('/lists/%s/interest-categories', $list_id);
-        $data     = $this->client->get($resource, $args);
+	/**
+	 * Gets the interest categories for a given List
+	 *
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/#read-get_lists_list_id_interest_categories
+	 *
+	 * @param string $list_id
+	 * @param array $args
+	 *
+	 * @return array
+	 * @throws MC4WP_API_Exception
+	 */
+	public function get_list_interest_categories($list_id, array $args = array())
+	{
+		$resource = sprintf('/lists/%s/interest-categories', $list_id);
+		$data     = $this->client->get($resource, $args);
 
-        if (is_object($data) && isset($data->categories)) {
-            return $data->categories;
-        }
+		if (is_object($data) && isset($data->categories)) {
+			return $data->categories;
+		}
 
-        return array();
-    }
+		return array();
+	}
 
-    /**
-     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/interests/#read-get_lists_list_id_interest_categories_interest_category_id_interests
-     *
-     * @param string $list_id
-     * @param string $interest_category_id
-     * @param array $args
-     *
-     * @return array
-     * @throws MC4WP_API_Exception
-     */
-    public function get_list_interest_category_interests($list_id, $interest_category_id, array $args = array())
-    {
-        $resource = sprintf('/lists/%s/interest-categories/%s/interests', $list_id, $interest_category_id);
-        $data     = $this->client->get($resource, $args);
+	/**
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/interests/#read-get_lists_list_id_interest_categories_interest_category_id_interests
+	 *
+	 * @param string $list_id
+	 * @param string $interest_category_id
+	 * @param array $args
+	 *
+	 * @return array
+	 * @throws MC4WP_API_Exception
+	 */
+	public function get_list_interest_category_interests($list_id, $interest_category_id, array $args = array())
+	{
+		$resource = sprintf('/lists/%s/interest-categories/%s/interests', $list_id, $interest_category_id);
+		$data     = $this->client->get($resource, $args);
 
-        if (is_object($data) && isset($data->interests)) {
-            return $data->interests;
-        }
+		if (is_object($data) && isset($data->interests)) {
+			return $data->interests;
+		}
 
-        return array();
-    }
+		return array();
+	}
 
-    /**
-     * Get merge vars for a given list
-     *
-     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
-     *
-     * @param string $list_id
-     * @param array $args
-     *
-     * @return array
-     * @throws MC4WP_API_Exception
-     */
-    public function get_list_merge_fields($list_id, array $args = array())
-    {
-        $resource = sprintf('/lists/%s', $list_id);
-        $data     = $this->client->get($resource, $args);
-        if (is_object($data) && isset($data->merge_fields)) {
-            return $data->merge_fields;
-        }
+	/**
+	 * Get merge vars for a given list
+	 *
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
+	 *
+	 * @param string $list_id
+	 * @param array $args
+	 *
+	 * @return array
+	 * @throws MC4WP_API_Exception
+	 */
+	public function get_list_merge_fields($list_id, array $args = array())
+	{
+		$resource = sprintf('/lists/%s/subscribers', $list_id);
+		$data     = $this->client->get($resource, $args);
+		foreach ($data as $val) {
+			if (is_object($data) && isset($val)) {
+				return $val;
+			}
+		}
+		// if (is_object($data) && isset($data->merge_fields)) {
+		// 	return $data->merge_fields;
+		// }
 
-        return array();
-    }
+		return array();
+	}
 
-    /**
-     * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/#read-get_lists_list_id
-     *
-     * @param string $list_id
-     * @param array $args
-     *
-     * @return object
-     * @throws MC4WP_API_Exception
-     */
-    public function get_list($list_id, array $args = array())
-    {
-        $resource = sprintf('/lists/%s', $list_id);
-        $data     = $this->client->get($resource, $args);
-        return $data;
-    }
-    
-    /**
+	/**
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/#read-get_lists_list_id
+	 *
+	 * @param string $list_id
+	 * @param array $args
+	 *
+	 * @return object
+	 * @throws MC4WP_API_Exception
+	 */
+	public function get_list($list_id, array $args = array())
+	{
+		$resource = sprintf('/lists/%s', $list_id);
+		$data     = $this->client->get($resource, $args);
+		return $data;
+	}
+
+	/**
 	 * @link https://developer.zozoema.com/documentation/zozoema/reference/lists/#read-get_lists
 	 *
 	 * @param array $args
@@ -206,16 +210,10 @@ class EMA4WP_API_V3
 	 */
 	public function get_list_member($list_id, $email_address, array $args = array())
 	{
-		
 		$subscriber_hash = $this->get_subscriber_hash($email_address);
-		
 		$resource        = sprintf('/api/v1/lists/%s/subscribers/%s', $list_id, $subscriber_hash);
 		$data            = $this->client->get($resource, $args);
-		echo "<pre>";
-		print_r($data);
-		echo "</pre>";
-		die('kết thúc');
-		
+		return $data;
 	}
 
 	/**
@@ -261,10 +259,10 @@ class EMA4WP_API_V3
 			$args['interests'] = (object) $args['interests'];
 		}
 		// "put" updates the member if it's already on the list... take notice
-//		$parts = explode("@", $args['email_address']);
-//		$name = $parts[0];
+		//		$parts = explode("@", $args['email_address']);
+		//		$name = $parts[0];
 
-		$data = $this->client->post($resource, array('EMAIL' => $args['email_address'],$args));
+		$data = $this->client->post($resource, $args);
 		return $data;
 	}
 

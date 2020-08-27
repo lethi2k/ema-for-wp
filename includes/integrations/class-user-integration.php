@@ -1,6 +1,6 @@
 <?php
 
-defined( 'ABSPATH' ) or exit;
+defined('ABSPATH') or exit;
 
 /**
  * Class EMA4WP_User_Integration
@@ -8,7 +8,8 @@ defined( 'ABSPATH' ) or exit;
  * @access public
  * @since 2.0
  */
-abstract class EMA4WP_User_Integration extends EMA4WP_Integration {
+abstract class EMA4WP_User_Integration extends EMA4WP_Integration
+{
 
 
 	/**
@@ -16,7 +17,8 @@ abstract class EMA4WP_User_Integration extends EMA4WP_Integration {
 	 *
 	 * @return array
 	 */
-	protected function user_merge_vars( WP_User $user ) {
+	protected function user_merge_vars(WP_User $user)
+	{
 
 		// start with user_login as name, since that's always known
 		$data = array(
@@ -24,17 +26,17 @@ abstract class EMA4WP_User_Integration extends EMA4WP_Integration {
 			'NAME'  => $user->user_login,
 		);
 
-		if ( '' !== $user->first_name ) {
+		if ('' !== $user->first_name) {
 			$data['NAME']  = $user->first_name;
-			$data['FNAME'] = $user->first_name;
+			$data['FIRST_NAME'] = $user->first_name;
 		}
 
-		if ( '' !== $user->last_name ) {
-			$data['LNAME'] = $user->last_name;
+		if ('' !== $user->last_name) {
+			$data['LAST_NAME'] = $user->last_name;
 		}
 
-		if ( '' !== $user->first_name && '' !== $user->last_name ) {
-			$data['NAME'] = sprintf( '%s %s', $user->first_name, $user->last_name );
+		if ('' !== $user->first_name && '' !== $user->last_name) {
+			$data['NAME'] = sprintf('%s %s', $user->first_name, $user->last_name);
 		}
 
 		/**
@@ -42,7 +44,7 @@ abstract class EMA4WP_User_Integration extends EMA4WP_Integration {
 		 * @deprecated 4.0
 		 * @ignore
 		 */
-		$data = (array) apply_filters( 'ema4wp_user_merge_vars', $data, $user );
+		$data = (array) apply_filters('ema4wp_user_merge_vars', $data, $user);
 
 		return $data;
 	}

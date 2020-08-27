@@ -6,7 +6,8 @@
  * @access private
  * @ignore
  */
-class EMA4WP_Field_Guesser {
+class EMA4WP_Field_Guesser
+{
 
 
 	/**
@@ -17,8 +18,9 @@ class EMA4WP_Field_Guesser {
 	/**
 	 * @param array $fields
 	 */
-	public function __construct( array $fields ) {
-		$fields       = array_change_key_case( $fields, CASE_UPPER );
+	public function __construct(array $fields)
+	{
+		$fields       = array_change_key_case($fields, CASE_UPPER);
 		$this->fields = $fields;
 	}
 
@@ -29,15 +31,16 @@ class EMA4WP_Field_Guesser {
 	 *
 	 * @return array
 	 */
-	public function namespaced( $namespace = 'ema4wp-' ) {
-		$prefix = strtoupper( $namespace );
+	public function namespaced($namespace = 'ema4wp-')
+	{
+		$prefix = strtoupper($namespace);
 		$return = array();
-		$length = strlen( $prefix );
+		$length = strlen($prefix);
 
-		foreach ( $this->fields as $key => $value ) {
-			if ( strpos( $key, $prefix ) === 0 ) {
-				$new_key            = substr( $key, $length );
-				$return[ $new_key ] = $value;
+		foreach ($this->fields as $key => $value) {
+			if (strpos($key, $prefix) === 0) {
+				$new_key            = substr($key, $length);
+				$return[$new_key] = $value;
 			}
 		}
 
@@ -48,40 +51,41 @@ class EMA4WP_Field_Guesser {
 	 * Guess values for the following fields
 	 *  - EMAIL
 	 *  - NAME
-	 *  - FNAME
-	 *  - LNAME
+	 *  - FIRST_NAME
+	 *  - LAST_NAME
 	 *
 	 * @return array
 	 */
-	public function guessed() {
+	public function guessed()
+	{
 		$guessed = array();
 
-		foreach ( $this->fields as $field => $value ) {
+		foreach ($this->fields as $field => $value) {
 
 			// transform value into array to support 1-level arrays
-			$sub_fields = is_array( $value ) ? $value : array( $value );
+			$sub_fields = is_array($value) ? $value : array($value);
 
-			foreach ( $sub_fields as $sub_field_value ) {
+			foreach ($sub_fields as $sub_field_value) {
 
 				// poor man's urldecode, to get Enfold theme's contact element to work.
-				$sub_field_value = str_replace( '%40', '@', $sub_field_value );
+				$sub_field_value = str_replace('%40', '@', $sub_field_value);
 
 				// is this an email value? if so, assume it's the EMAIL field
-				if ( empty( $guessed['EMAIL'] ) && is_string( $sub_field_value ) && is_email( $sub_field_value ) ) {
+				if (empty($guessed['EMAIL']) && is_string($sub_field_value) && is_email($sub_field_value)) {
 					$guessed['EMAIL'] = $sub_field_value;
 					continue 2;
 				}
 
 				// remove special characters from field name
-				$simple_key = str_replace( array( '-', '_', ' ' ), '', $field );
+				$simple_key = str_replace(array('-', '_', ' '), '', $field);
 
-				if ( empty( $guessed['FNAME'] ) && $this->string_contains( $simple_key, array( 'FIRSTNAME', 'FNAME', 'GIVENNAME', 'FORENAME' ) ) ) {
+				if (empty($guessed['FIRST_NAME']) && $this->string_contains($simple_key, array('FIRSTNAME', 'FIRST_NAME', 'GIVENNAME', 'FORENAME'))) {
 					// find first name field
-					$guessed['FNAME'] = $sub_field_value;
-				} elseif ( empty( $guessed['LNAME'] ) && $this->string_contains( $simple_key, array( 'LASTNAME', 'LNAME', 'SURNAME', 'FAMILYNAME' ) ) ) {
+					$guessed['FIRST_NAME'] = $sub_field_value;
+				} elseif (empty($guessed['LAST_NAME']) && $this->string_contains($simple_key, array('LASTNAME', 'LAST_NAME', 'SURNAME', 'FAMILYNAME'))) {
 					// find last name field
-					$guessed['LNAME'] = $sub_field_value;
-				} elseif ( empty( $guessed['NAME'] ) && $this->string_contains( $simple_key, 'NAME' ) ) {
+					$guessed['LAST_NAME'] = $sub_field_value;
+				} elseif (empty($guessed['NAME']) && $this->string_contains($simple_key, 'NAME')) {
 					// find name field
 					$guessed['NAME'] = $sub_field_value;
 				}
@@ -96,12 +100,13 @@ class EMA4WP_Field_Guesser {
 	 *
 	 * @return array
 	 */
-	public function combine( array $methods ) {
+	public function combine(array $methods)
+	{
 		$combined = array();
 
-		foreach ( $methods as $method ) {
-			if ( method_exists( $this, $method ) ) {
-				$combined = array_merge( $combined, call_user_func( array( $this, $method ) ) );
+		foreach ($methods as $method) {
+			if (method_exists($this, $method)) {
+				$combined = array_merge($combined, call_user_func(array($this, $method)));
 			}
 		}
 
@@ -114,13 +119,14 @@ class EMA4WP_Field_Guesser {
 	 *
 	 * @return bool
 	 */
-	private function string_contains( $haystack, $needles ) {
-		if ( ! is_array( $needles ) ) {
-			$needles = array( $needles );
+	private function string_contains($haystack, $needles)
+	{
+		if (!is_array($needles)) {
+			$needles = array($needles);
 		}
 
-		foreach ( $needles as $needle ) {
-			if ( strpos( $haystack, $needle ) !== false ) {
+		foreach ($needles as $needle) {
+			if (strpos($haystack, $needle) !== false) {
 				return true;
 			}
 		}

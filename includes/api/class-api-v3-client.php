@@ -66,6 +66,10 @@ class EMA4WP_API_V3_Client
 	 */
 	public function post($resource, array $data)
 	{
+		// echo "<pre>";
+		// print_r($data);
+		// echo "</pre>";
+		// die('kết thúc');
 		return $this->request('POST', $resource, $data);
 	}
 
