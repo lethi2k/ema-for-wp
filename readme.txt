@@ -1,6 +1,6 @@
 === EMA4WP: ZozoEMA for WordPress ===
 Contributors: Ibericode, DvanKooten, hchouhan, lapzor
-Donate link: https://zozo.vn/ung-dung-email-marketing
+Donate link: https://appv4.zozo.vn/ung-dung-email-marketing
 Tags: zozoema, ema4wp, email, marketing, newsletter, subscribe, widget, ema4wp, contact form 7, woocommerce, buddypress, ibericode, zozoema form
 Requires at least: 1.0.1
 Tested up to: 1.0.1
@@ -72,7 +72,7 @@ ZozoEMA is a newsletter service that allows you to send out email campaigns to a
 
 This plugin allows you to tightly integrate your WordPress site with your ZozoEMA account.
 
-If you are not yet using ZozoEMA, [creating an account is 100% free and only takes you about 30 seconds](https://zozo.vn/ung-dung-email-marketing).
+If you are not yet using ZozoEMA, [creating an account is 100% free and only takes you about 30 seconds](https://appv4.zozo.vn/ung-dung-email-marketing).
 
 == Installation ==
 
@@ -80,7 +80,7 @@ If you are not yet using ZozoEMA, [creating an account is 100% free and only tak
 1. In your WordPress admin panel, go to *Plugins > New Plugin*, search for **ZozoEMA for WordPress** and click "*Install now*"
 1. Alternatively, download the plugin and upload the contents of `zozoema-for-wp.zip` to your plugins directory, which usually is `/wp-content/plugins/`.
 1. Activate the plugin
-1. Set [your API key](https://zozo.vn/account/api) in the plugin settings.
+1. Set [your API key](https://appv4.zozo.vn/account/api) in the plugin settings.
 
 #### Configuring Sign-Up Form(s)
 1. Go to *ZozoEMA for WP > Forms*
@@ -99,14 +99,14 @@ if( function_exists( 'ema4wp_show_form' ) ) {
 `
 
 #### Need help?
-Please take a look at the [ZozoEMA for WordPress knowledge base](https://zozo.vn/account/api) first.
+Please take a look at the [ZozoEMA for WordPress knowledge base](https://appv4.zozo.vn/account/api) first.
 
 If you can't find an answer there, please look through the [plugin support forums](https://wordpress.org/support/plugin/zozoema-for-wp) or start your own topic.
 
 == Frequently Asked Questions ==
 
 #### More documentation
-More detailed documentation can be found in the [ZozoEMA for WordPress knowledge base]https://zozo.vn/lists).
+More detailed documentation can be found in the [ZozoEMA for WordPress knowledge base]https://appv4.zozo.vn/lists).
 
 #### How to display a form in posts or pages?
 Use the `[ema4wp_form]` shortcode.
@@ -115,7 +115,7 @@ Use the `[ema4wp_form]` shortcode.
 Go to **Appearance > Widgets** and use the **ZozoEMA for WP Form** widget that comes with the plugin.
 
 #### Where can I find my API key to connect to ZozoEMA?
-[You can find your API key here](https://zozo.vn/account/api)
+[You can find your API key here](https://appv4.zozo.vn/account/api)
 
 #### How to add a sign-up checkbox to my Contact Form 7 form?
 Use the following shortcode in your CF7 form to display a newsletter sign-up checkbox.
@@ -156,7 +156,7 @@ We recommend the [Boxzilla pop-up plugin](https://wordpress.org/plugins/boxzilla
 
 #### My question is not listed
 
-Please head over to the [ZozoEMA for WordPress knowledge base](https://zozo.vn/frontend/docs/api/v1) for more detailed documentation.
+Please head over to the [ZozoEMA for WordPress knowledge base](https://appv4.zozo.vn/frontend/docs/api/v1) for more detailed documentation.
 
 == Other Notes ==
 
@@ -166,11 +166,11 @@ Use the [WordPress.org plugin forums](https://wordpress.org/support/plugin/zozoe
 
 If you're a premium user, please use the email address inside the plugin for support as that will guarantee a faster response time.
 
-Please take a look at the [ZozoEMA for WordPress knowledge base](https://zozo.vn/frontend/docs/api/v1) as well.
+Please take a look at the [ZozoEMA for WordPress knowledge base](https://appv4.zozo.vn/frontend/docs/api/v1) as well.
 
 #### Add-on plugins
 
-There are several [add-on plugins](https://zozo.vn/frontend/docs/api/v1) available, which help you get even more out of your site.
+There are several [add-on plugins](https://appv4.zozo.vn/frontend/docs/api/v1) available, which help you get even more out of your site.
 
 #### Translations
 

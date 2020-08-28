@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Takes care of requests to the ZozoEMA API (version 2.0, deprecated)
+ * Takes care of requests to the ZozoEMA API (version 1.0, deprecated)
  *
  * @access public
  * @uses WP_HTTP
@@ -15,7 +15,7 @@ class EMA4WP_API
 	/**
 	 * @var string The URL to the ZozoEMA API
 	 */
-	protected $api_url = 'https://api.zozoema.com/2.0/';
+	protected $api_url = 'http://api.appv4.zema.de';
 
 	/**
 	 * @var string The API key to use
@@ -52,8 +52,8 @@ class EMA4WP_API
 		$this->api_key = $api_key;
 
 		$dash_position = strpos($api_key, '-');
-		if ($dash_position !== false) {
-			$this->api_url = 'https://' . substr($api_key, $dash_position + 1) . '.api.zozoema.com/2.0/';
+		if ($dash_position == false) {
+			$this->api_url = str_replace('//api.', '//', $this->api_url . '/api/v1/');
 		}
 	}
 
