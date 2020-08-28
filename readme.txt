@@ -1,6 +1,6 @@
 === EMA4WP: ZozoEMA for WordPress ===
 Contributors: Ibericode, DvanKooten, hchouhan, lapzor
-Donate link: https://appv4.zozo.vn/ung-dung-email-marketing
+Donate link: https://zozo.vn/ung-dung-email-marketing
 Tags: zozoema, ema4wp, email, marketing, newsletter, subscribe, widget, ema4wp, contact form 7, woocommerce, buddypress, ibericode, zozoema form
 Requires at least: 1.0.1
 Tested up to: 1.0.1
