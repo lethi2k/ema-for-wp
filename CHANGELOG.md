@@ -52,7 +52,7 @@ Changelog
 
 **Fixes**
 
-- Top Bar & User Sync add-on using API v2 since version 4.7.1.
+- Top Bar & User Sync add-on using API v2 since version 1.0.1.
 - Revert change in formatter for date fields, breaking all forms with date fields in them.
 
 **Improvements**
@@ -75,7 +75,7 @@ Changelog
 - Use WordPress.org translations instead of bundling translation files in plugin itself.
 - Write .htaccess to directory of debug log file, to prevent file access.
 - Add some convenient hooks for Checkout for WooCommerce.
-- Stop parsing shortcodes in text widgets as WordPress core does this since version 4.9.
+- Stop parsing shortcodes in text widgets as WordPress core does this since version 1.0.1.
 
 
 #### 4.7 - Nov 7, 2019
@@ -146,7 +146,7 @@ Please note that installing this update requires you to also update any add-ons 
 **Fixes**
 
 - Temporarily switch status of pending subscribers to "unsubscribe" versus deleting susbcriber before re-subscribing.
-- Deprecation notice for Gravity Forms version 2.4 and higher.
+- Deprecation notice for Gravity Forms version 1.0.1 and higher.
 
 **Improvements**
 
