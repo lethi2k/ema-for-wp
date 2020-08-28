@@ -47,9 +47,9 @@ class EMA4WP_API_V3
 		//tim xem co uid hay khong neu khong return false
 		foreach ($data as $val) {
 			$connected = is_object($val) && isset($val->id);
-			//var_dump( $val->id);
 			break;
 		}
+
 		//tra ve true or false
 		return $connected;
 	}
@@ -68,7 +68,7 @@ class EMA4WP_API_V3
 	/**
 	 * Get recent daily, aggregated activity stats for a list.
 	 *
-	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/activity/#read-get_lists_list_id_activity
+	 * @link https://developer.ema.com/documentation/ema/reference/lists/activity/#read-get_lists_list_id_activity
 	 *
 	 * @param string $list_id
 	 * @param array $args
@@ -77,6 +77,7 @@ class EMA4WP_API_V3
 	 * @throws MC4WP_API_Exception
 	 */
 
+	//tich hop pubgin active
 	public function get_list_activity($list_id, array $args = array())
 	{
 		$resource = sprintf('/lists/%s', $list_id);
@@ -91,7 +92,7 @@ class EMA4WP_API_V3
 	/**
 	 * Gets the interest categories for a given List
 	 *
-	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/#read-get_lists_list_id_interest_categories
+	 * @link https://developer.ema.com/documentation/ema/reference/lists/interest-categories/#read-get_lists_list_id_interest_categories
 	 *
 	 * @param string $list_id
 	 * @param array $args
@@ -112,7 +113,7 @@ class EMA4WP_API_V3
 	}
 
 	/**
-	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/interest-categories/interests/#read-get_lists_list_id_interest_categories_interest_category_id_interests
+	 * @link https://developer.ema.com/documentation/ema/reference/lists/interest-categories/interests/#read-get_lists_list_id_interest_categories_interest_category_id_interests
 	 *
 	 * @param string $list_id
 	 * @param string $interest_category_id
@@ -123,7 +124,7 @@ class EMA4WP_API_V3
 	 */
 	public function get_list_interest_category_interests($list_id, $interest_category_id, array $args = array())
 	{
-		$resource = sprintf('/lists/%s/interest-categories/%s/interests', $list_id, $interest_category_id);
+		$resource = sprintf('/lists/%s/subscribers/%s', $list_id, $interest_category_id);
 		$data     = $this->client->get($resource, $args);
 
 		if (is_object($data) && isset($data->interests)) {
@@ -136,7 +137,7 @@ class EMA4WP_API_V3
 	/**
 	 * Get merge vars for a given list
 	 *
-	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
+	 * @link https://developer.ema.com/documentation/ema/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
 	 *
 	 * @param string $list_id
 	 * @param array $args
@@ -146,18 +147,13 @@ class EMA4WP_API_V3
 	 */
 	public function get_list_merge_fields($list_id, array $args = array())
 	{
-		$resource = sprintf('/lists/%s/subscribers', $list_id);
+		$resource = sprintf('/lists/%s/merge-fields', $list_id);
 		$data     = $this->client->get($resource, $args);
 		foreach ($data as $val) {
 			if (is_object($val) && isset($val)) {
-				return $val;
+				return $data;
 			}
 		}
-		
-		// if (is_object($data) && isset($data->merge_fields)) {
-		// 	return $data->merge_fields;
-		// }
-
 		return array();
 	}
 
@@ -165,7 +161,7 @@ class EMA4WP_API_V3
 		/**
 	 * Get merge vars for a given list
 	 *
-	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
+	 * @link https://developer.ema.com/documentation/ema/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
 	 *
 	 * @param string $list_id
 	 * @param array $args
@@ -181,13 +177,12 @@ class EMA4WP_API_V3
 			if (is_object($val) && isset($val->uid)) {
 				return $val->uid;
 			}
-			
 		}
 		return array();
 	}
 
 	/**
-	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/#read-get_lists_list_id
+	 * @link https://developer.ema.com/documentation/ema/reference/lists/#read-get_lists_list_id
 	 *
 	 * @param string $list_id
 	 * @param array $args

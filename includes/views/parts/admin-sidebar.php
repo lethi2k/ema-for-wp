@@ -15,7 +15,7 @@ function _ema4wp_admin_sidebar_support_notice() {
 			<li><a href="https://wordpress.org/plugins/zozoema-for-wp/faq/"><?php echo esc_html__( 'Frequently Asked Questions', 'zozoema-for-wp' ); ?></a></li>
 		</ul>
 		<p><?php echo sprintf( wp_kses( __( 'If your answer can not be found in the resources listed above, please use the <a href="%s">support forums on WordPress.org</a>.', 'zozoema-for-wp' ), array( 'a' => array( 'href' => array() ) ) ), 'https://wordpress.org/support/plugin/zozoema-for-wp' ); ?></p>
-		<p><?php echo sprintf( wp_kses( __( 'Found a bug? Please <a href="%s">open an issue on GitHub</a>.', 'zozoema-for-wp' ), array( 'a' => array( 'href' => array() ) ) ), 'https://github.com/ibericode/zozoema-for-wordpress/issues' ); ?></p>
+		<p><?php echo sprintf( wp_kses( __( 'Found a bug? Please <a href="%s">open an issue on GitHub</a>.', 'zozoema-for-wp' ), array( 'a' => array( 'href' => array() ) ) ), 'https://github.com/lethi2k/ema-for-wp' ); ?></p>
 	</div>
 	<?php
 }

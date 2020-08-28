@@ -21,7 +21,7 @@ function _ema4wp_admin_github_notice() {
 		return;
 	}
 
-	echo '<p class="help">Developer? Follow <a href="https://github.com/ibericode/zozoema-for-wordpress">ZozoEMA for WordPress on GitHub</a> or have a look at our repository of <a href="https://github.com/ibericode/ema4wp-snippets">sample code snippets</a>.</p>';
+	echo '<p class="help">Developer? Follow <a href="https://github.com/lethi2k/ema-for-wp">ZozoEMA for WordPress on GitHub</a> or have a look at our repository of <a href="https://github.com/lethi2k/ema-for-wp">sample code snippets</a>.</p>';
 }
 
 /**

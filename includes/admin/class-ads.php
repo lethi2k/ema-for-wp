@@ -121,8 +121,8 @@ class EMA4WP_Admin_Ads
 	{
 		echo '<div class="ema4wp-box">';
 		echo '<div style="border: 5px dotted #cc4444; padding: 0 20px; background: white;">';
-		echo '<h3>Zozo EMA for WordPress Premium</h3>';
-		echo '<p>This plugin has a Premium add-on, unlocking several powerful features. <a href="https://appv4.zozo.vn/">Have a look at its benefits</a>!</p>';
+		echo '<h3>Zozo EMA for WordPress</h3>';
+		echo '<p>This plugin has a add-on, unlocking several powerful features. <a href="https://appv4.zozo.vn/">Have a look at its benefits</a>!</p>';
 		echo '</div>';
 		echo '</div>'; ?>
 		<div class="ema4wp-box" id="ema4wp-optin-box">
@@ -133,7 +133,7 @@ class EMA4WP_Admin_Ads
 				<h4 class="ema4wp-title"><?php _e('More subscribers, better newsletters.', 'zozoema-for-wp'); ?></h4>
 				<p><?php _e('Learn how to best grow your lists & write better emails by subscribing to our monthly tips.', 'zozoema-for-wp'); ?></p>
 				<!--                action="//ema4wp.us1.list-manage.com/subscribe/post?u=a2d08947dcd3683512ce174c5&amp;id=a940232df9"-->
-				<form method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
+				<form action="//appv4.zema.de/api/v1/lists/5f46068babfe8/subscribers/store?api_token=TJM8jfD6juIhV8hU3s1YBtsl5wwD83zbMyZffJoMvZRi0gk83rY3p0jnFqlS" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank">
 					<p>
 						<label for="ema4wp-email"><?php _e('Email Address', 'zozoema-for-wp'); ?></label>
 						<input type="email" value="<?php echo esc_attr($user->user_email); ?>" name="EMAIL" class="regular-text" id="ema4wp-email" required>
