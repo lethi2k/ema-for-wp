@@ -196,7 +196,7 @@ The plugin provides various filter & action hooks that allow you to modify or ex
 == Changelog ==
 
 
-#### 4.8 - Jul 9, 2020
+#### 1.0.1 - Jul 9, 2020
 
 - Plugin now requires PHP 5.3 or higher.
 - Prefix overlay classname to prevent styling collissions with other plugins.
