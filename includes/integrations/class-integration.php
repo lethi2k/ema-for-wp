@@ -11,7 +11,8 @@
  * @since 3.0
  * @abstract
  */
-abstract class EMA4WP_Integration {
+abstract class EMA4WP_Integration
+{
 
 
 	/**
@@ -45,12 +46,13 @@ abstract class EMA4WP_Integration {
 	 * @param string $slug
 	 * @param array $options
 	 */
-	public function __construct( $slug, array $options ) {
+	public function __construct($slug, array $options)
+	{
 		$this->slug    = $slug;
-		$this->options = $this->parse_options( $options );
+		$this->options = $this->parse_options($options);
 
 		// if checkbox name is not set, set a good custom value
-		if ( $this->checkbox_name === '' ) {
+		if ($this->checkbox_name === '') {
 			$this->checkbox_name = '_ema4wp_subscribe_' . $this->slug;
 		}
 	}
@@ -60,13 +62,14 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return array
 	 */
-	protected function get_default_options() {
+	protected function get_default_options()
+	{
 		return array(
 			'css'               => 0,
 			'double_optin'      => 1,
 			'enabled'           => 0,
 			'implicit'          => 0,
-			'label'             => __( 'Sign me up for the newsletter!', 'zozoema-for-wp' ),
+			'label'             => __('Sign me up for the newsletter!', 'zozoema-for-wp'),
 			'lists'             => array(),
 			'precheck'          => 0,
 			'replace_interests' => 0,
@@ -80,16 +83,17 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return array
 	 */
-	protected function parse_options( array $options ) {
+	protected function parse_options(array $options)
+	{
 		$slug = $this->slug;
 
 		$default_options = $this->get_default_options();
-		$options         = array_merge( $default_options, $options );
+		$options         = array_merge($default_options, $options);
 
 		/**
 		 * @deprecated Use ema4wp_integration_{$slug}_options instead
 		 */
-		$options = (array) apply_filters( 'ema4wp_' . $slug . '_integration_options', $options );
+		$options = (array) apply_filters('ema4wp_' . $slug . '_integration_options', $options);
 
 		/**
 		 * Filters options for a specific integration
@@ -98,13 +102,14 @@ abstract class EMA4WP_Integration {
 		 *
 		 * @param array $integration_options
 		 */
-		return (array) apply_filters( 'ema4wp_integration_' . $slug . '_options', $options );
+		return (array) apply_filters('ema4wp_integration_' . $slug . '_options', $options);
 	}
 
 	/**
 	 * Initialize the integration
 	 */
-	public function initialize() {
+	public function initialize()
+	{
 		$this->add_required_hooks();
 		$this->add_hooks();
 	}
@@ -112,9 +117,10 @@ abstract class EMA4WP_Integration {
 	/**
 	 * Adds the required hooks for core functionality, like adding checkbox reset CSS.
 	 */
-	protected function add_required_hooks() {
-		if ( $this->options['css'] && ! $this->options['implicit'] ) {
-			add_action( 'wp_head', array( $this, 'print_css_reset' ) );
+	protected function add_required_hooks()
+	{
+		if ($this->options['css'] && !$this->options['implicit']) {
+			add_action('wp_head', array($this, 'print_css_reset'));
 		}
 	}
 
@@ -126,7 +132,8 @@ abstract class EMA4WP_Integration {
 	 * @param int $object_id Useful when overriding method. (optional)
 	 * @return bool
 	 */
-	public function triggered( $object_id = null ) {
+	public function triggered($object_id = null)
+	{
 		return $this->options['implicit'] || $this->checkbox_was_checked();
 	}
 
@@ -140,14 +147,15 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @hooked `wp_head`
 	 */
-	public function print_css_reset() {
-		$suffix = defined( 'SCRIPT_DEBUG' ) ? '' : '.min';
-		$css    = file_get_contents( EMA4WP_PLUGIN_DIR . 'assets/css/checkbox-reset' . $suffix . '.css' );
+	public function print_css_reset()
+	{
+		$suffix = defined('SCRIPT_DEBUG') ? '' : '.min';
+		$css    = file_get_contents(EMA4WP_PLUGIN_DIR . 'assets/css/checkbox-reset' . $suffix . '.css');
 
 		// replace selector by integration specific selector so the css affects just this checkbox
-		$css = str_ireplace( '__INTEGRATION_SLUG__', $this->slug, $css );
+		$css = str_ireplace('__INTEGRATION_SLUG__', $this->slug, $css);
 
-		printf( '<style type="text/css">%s</style>', $css );
+		printf('<style type="text/css">%s</style>', $css);
 	}
 
 	/**
@@ -155,7 +163,8 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return string
 	 */
-	public function get_label_text() {
+	public function get_label_text()
+	{
 		$integration = $this;
 		$label       = $this->options['label'];
 
@@ -168,7 +177,7 @@ abstract class EMA4WP_Integration {
 		 * @param EMA4WP_Integration $integration
 		 * @ignore
 		 */
-		$label = (string) apply_filters( 'ema4wp_integration_checkbox_label', $label, $integration );
+		$label = (string) apply_filters('ema4wp_integration_checkbox_label', $label, $integration);
 		return $label;
 	}
 
@@ -177,9 +186,10 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return bool
 	 */
-	public function checkbox_was_checked() {
+	public function checkbox_was_checked()
+	{
 		$data = $this->get_data();
-		return isset( $data[ $this->checkbox_name ] ) && (int) $data[ $this->checkbox_name ] === 1;
+		return isset($data[$this->checkbox_name]) && (int) $data[$this->checkbox_name] === 1;
 	}
 
 	/**
@@ -187,13 +197,14 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return string
 	 */
-	protected function get_checkbox_attributes() {
+	protected function get_checkbox_attributes()
+	{
 		$integration = $this;
 		$slug        = $this->slug;
 
 		$attributes = array();
 
-		if ( $this->options['precheck'] ) {
+		if ($this->options['precheck']) {
 			$attributes['checked'] = 'checked';
 		}
 
@@ -204,7 +215,7 @@ abstract class EMA4WP_Integration {
 		 * @param EMA4WP_Integration $integration
 		 * @ignore
 		 */
-		$attributes = (array) apply_filters( 'ema4wp_integration_checkbox_attributes', $attributes, $integration );
+		$attributes = (array) apply_filters('ema4wp_integration_checkbox_attributes', $attributes, $integration);
 
 		/**
 		 * Filters the attributes array.
@@ -215,11 +226,11 @@ abstract class EMA4WP_Integration {
 		 * @param EMA4WP_Integration $integration
 		 * @ignore
 		 */
-		$attributes = (array) apply_filters( 'ema4wp_integration_' . $slug . '_checkbox_attributes', $attributes, $integration );
+		$attributes = (array) apply_filters('ema4wp_integration_' . $slug . '_checkbox_attributes', $attributes, $integration);
 
 		$string = '';
-		foreach ( $attributes as $key => $value ) {
-			$string .= sprintf( '%s="%s"', $key, esc_attr( $value ) );
+		foreach ($attributes as $key => $value) {
+			$string .= sprintf('%s="%s"', $key, esc_attr($value));
 		}
 
 		return $string;
@@ -228,7 +239,8 @@ abstract class EMA4WP_Integration {
 	/**
 	 * Outputs a checkbox
 	 */
-	public function output_checkbox() {
+	public function output_checkbox()
+	{
 		echo $this->get_checkbox_html();
 	}
 
@@ -237,8 +249,9 @@ abstract class EMA4WP_Integration {
 	 * @param array $html_attrs
 	 * @return string
 	 */
-	public function get_checkbox_html( array $html_attrs = array() ) {
-		$show_checkbox    = empty( $this->options['implicit'] );
+	public function get_checkbox_html(array $html_attrs = array())
+	{
+		$show_checkbox    = empty($this->options['implicit']);
 		$integration_slug = $this->slug;
 
 		/**
@@ -247,21 +260,21 @@ abstract class EMA4WP_Integration {
 		 * @param bool $show_checkbox
 		 * @param string $integration_slug
 		 */
-		$show_checkbox = (bool) apply_filters( 'ema4wp_integration_show_checkbox', $show_checkbox, $integration_slug );
+		$show_checkbox = (bool) apply_filters('ema4wp_integration_show_checkbox', $show_checkbox, $integration_slug);
 
-		if ( ! $show_checkbox ) {
+		if (!$show_checkbox) {
 			return '';
 		}
 
 		ob_start();
 
-		echo sprintf( '<!-- ZozoEMA for WordPress v%s - https://www.ema4wp.com/ -->', EMA4WP_VERSION );
+		echo sprintf('<!-- ZozoEMA for WordPress v%s - https://www.ema4wp.com/ -->', EMA4WP_VERSION);
 
 		/** @ignore */
-		do_action( 'ema4wp_integration_before_checkbox_wrapper', $this );
+		do_action('ema4wp_integration_before_checkbox_wrapper', $this);
 
 		/** @ignore */
-		do_action( 'ema4wp_integration_' . $this->slug . '_before_checkbox_wrapper', $this );
+		do_action('ema4wp_integration_' . $this->slug . '_before_checkbox_wrapper', $this);
 
 		$wrapper_tag = $this->options['wrap_p'] ? 'p' : 'span';
 
@@ -271,27 +284,27 @@ abstract class EMA4WP_Integration {
 			),
 			$html_attrs
 		);
-		$html_attrs['class'] = $html_attrs['class'] . sprintf( ' ema4wp-checkbox ema4wp-checkbox-%s', $this->slug );
+		$html_attrs['class'] = $html_attrs['class'] . sprintf(' ema4wp-checkbox ema4wp-checkbox-%s', $this->slug);
 
 		$html_attr_str = '';
-		foreach ( $html_attrs as $key => $value ) {
-			$html_attr_str .= sprintf( '%s="%s" ', $key, esc_attr( $value ) );
+		foreach ($html_attrs as $key => $value) {
+			$html_attr_str .= sprintf('%s="%s" ', $key, esc_attr($value));
 		}
 
 		// Hidden field to make sure "0" is sent to server
-		echo sprintf( '<input type="hidden" name="%s" value="0" />', esc_attr( $this->checkbox_name ) );
-		echo sprintf( '<%s %s>', $wrapper_tag, $html_attr_str );
+		echo sprintf('<input type="hidden" name="%s" value="0" />', esc_attr($this->checkbox_name));
+		echo sprintf('<%s %s>', $wrapper_tag, $html_attr_str);
 		echo '<label>';
-		echo sprintf( '<input type="checkbox" name="%s" value="1" %s />', esc_attr( $this->checkbox_name ), $this->get_checkbox_attributes() );
-		echo sprintf( '<span>%s</span>', $this->get_label_text() );
+		echo sprintf('<input type="checkbox" name="%s" value="1" %s />', esc_attr($this->checkbox_name), $this->get_checkbox_attributes());
+		echo sprintf('<span>%s</span>', $this->get_label_text());
 		echo '</label>';
-		echo sprintf( '</%s>', $wrapper_tag );
+		echo sprintf('</%s>', $wrapper_tag);
 
 		/** @ignore */
-		do_action( 'ema4wp_integration_after_checkbox_wrapper', $this );
+		do_action('ema4wp_integration_after_checkbox_wrapper', $this);
 
 		/** @ignore */
-		do_action( 'ema4wp_integration_' . $this->slug . '_after_checkbox_wrapper', $this );
+		do_action('ema4wp_integration_' . $this->slug . '_after_checkbox_wrapper', $this);
 		echo '<!-- / ZozoEMA for WordPress -->';
 
 		$html = ob_get_clean();
@@ -303,7 +316,8 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return array Array of List ID's
 	 */
-	public function get_lists() {
+	public function get_lists()
+	{
 		$data        = $this->get_data();
 		$integration = $this;
 		$slug        = $this->slug;
@@ -312,13 +326,13 @@ abstract class EMA4WP_Integration {
 		$lists = $this->options['lists'];
 
 		// get lists from request, if set.
-		if ( ! empty( $data['_ema4wp_lists'] ) ) {
+		if (!empty($data['_ema4wp_lists'])) {
 			$lists = $data['_ema4wp_lists'];
 
 			// ensure lists is an array
-			if ( ! is_array( $lists ) ) {
-				$lists = explode( ',', $lists );
-				$lists = array_map( 'trim', $lists );
+			if (!is_array($lists)) {
+				$lists = explode(',', $lists);
+				$lists = array_map('trim', $lists);
 			}
 		}
 
@@ -329,7 +343,7 @@ abstract class EMA4WP_Integration {
 		 * @see EMA4WP_Form::get_lists
 		 * @ignore
 		 */
-		$lists = (array) apply_filters( 'ema4wp_lists', $lists );
+		$lists = (array) apply_filters('ema4wp_lists', $lists);
 
 		/**
 		 * Filters the ZozoEMA lists this integration should subscribe to
@@ -339,7 +353,7 @@ abstract class EMA4WP_Integration {
 		 * @param array $lists
 		 * @param EMA4WP_Integration $integration
 		 */
-		$lists = (array) apply_filters( 'ema4wp_integration_lists', $lists, $integration );
+		$lists = (array) apply_filters('ema4wp_integration_lists', $lists, $integration);
 
 		/**
 		 * Filters the ZozoEMA lists a specific integration should subscribe to
@@ -351,7 +365,7 @@ abstract class EMA4WP_Integration {
 		 * @param array $lists
 		 * @param EMA4WP_Integration $integration
 		 */
-		$lists = (array) apply_filters( 'ema4wp_integration_' . $slug . '_lists', $lists, $integration );
+		$lists = (array) apply_filters('ema4wp_integration_' . $slug . '_lists', $lists, $integration);
 
 		return $lists;
 	}
@@ -364,7 +378,8 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return boolean
 	 */
-	protected function subscribe( array $data, $related_object_id = 0 ) {
+	protected function subscribe(array $data, $related_object_id = 0)
+	{
 		$integration = $this;
 		$slug        = $this->slug;
 		$zozoema   = new EMA4WP_ZozoEMA();
@@ -376,8 +391,8 @@ abstract class EMA4WP_Integration {
 		$result     = false;
 
 		// validate lists
-		if ( empty( $list_ids ) ) {
-			$log->warning( sprintf( '%s > No ZozoEMA lists were selected', $this->name ) );
+		if (empty($list_ids)) {
+			$log->warning(sprintf('%s > No ZozoEMA lists were selected', $this->name));
 			return false;
 		}
 
@@ -386,7 +401,7 @@ abstract class EMA4WP_Integration {
 		 *
 		 * @param array $data
 		 */
-		$data = apply_filters( 'ema4wp_integration_data', $data );
+		$data = apply_filters('ema4wp_integration_data', $data);
 
 		/**
 		 * Filters data for a specific integration request.
@@ -396,47 +411,47 @@ abstract class EMA4WP_Integration {
 		 * @param array $data
 		 * @param int $related_object_id
 		 */
-		$data = apply_filters( "ema4wp_integration_{$slug}_data", $data, $related_object_id );
+		$data = apply_filters("ema4wp_integration_{$slug}_data", $data, $related_object_id);
 
 		/**
 		 * @ignore
 		 * @deprecated 4.0
 		 */
-		$data = apply_filters( 'ema4wp_merge_vars', $data );
+		$data = apply_filters('ema4wp_merge_vars', $data);
 
 		/**
 		 * @deprecated 4.0
 		 * @ignore
 		 */
-		$data = apply_filters( 'ema4wp_integration_merge_vars', $data, $integration );
+		$data = apply_filters('ema4wp_integration_merge_vars', $data, $integration);
 
 		/**
 		 * @deprecated 4.0
 		 * @ignore
 		 */
-		$data = apply_filters( "ema4wp_integration_{$slug}_merge_vars", $data, $integration );
+		$data = apply_filters("ema4wp_integration_{$slug}_merge_vars", $data, $integration);
 
 		$email_type = ema4wp_get_email_type();
 
-		$mapper = new EMA4WP_List_Data_Mapper( $data, $list_ids );
+		$mapper = new EMA4WP_List_Data_Mapper($data, $list_ids);
 
 		/** @var EMA4WP_ZozoEMA_Subscriber[] $map */
 		$map = $mapper->map();
 
-		foreach ( $map as $list_id => $subscriber ) {
+		foreach ($map as $list_id => $subscriber) {
 			$subscriber->status     = $this->options['double_optin'] ? 'pending' : 'subscribed';
 			$subscriber->email_type = $email_type;
 			$subscriber->ip_signup  = ema4wp_get_request_ip_address();
 
 			/** @ignore (documented elsewhere) */
-			$subscriber = apply_filters( 'ema4wp_subscriber_data', $subscriber );
+			$subscriber = apply_filters('ema4wp_subscriber_data', $subscriber);
 
 			/**
 			 * Filters subscriber data before it is sent to ZozoEMA. Only fires for integration requests.
 			 *
 			 * @param EMA4WP_ZozoEMA_Subscriber $subscriber
 			 */
-			$subscriber = apply_filters( 'ema4wp_integration_subscriber_data', $subscriber );
+			$subscriber = apply_filters('ema4wp_integration_subscriber_data', $subscriber);
 
 			/**
 			 * Filters subscriber data before it is sent to ZozoEMA. Only fires for integration requests.
@@ -446,26 +461,26 @@ abstract class EMA4WP_Integration {
 			 * @param EMA4WP_ZozoEMA_Subscriber $subscriber
 			 * @param int $related_object_id
 			 */
-			$subscriber = apply_filters( "ema4wp_integration_{$slug}_subscriber_data", $subscriber, $related_object_id );
+			$subscriber = apply_filters("ema4wp_integration_{$slug}_subscriber_data", $subscriber, $related_object_id);
 
-			$result = $zozoema->list_subscribe( $list_id, $subscriber->email_address, $subscriber->to_array(), $this->options['update_existing'], $this->options['replace_interests'] );
+			$result = $zozoema->list_subscribe($list_id, $subscriber->email_address, $subscriber->to_array(), $this->options['update_existing'], $this->options['replace_interests']);
 		}
 
 		// if result failed, show error message
-		if ( ! $result ) {
+		if (!$result) {
 
 			// log error
-			if ( (int) $zozoema->get_error_code() === 214 ) {
-				$log->warning( sprintf( '%s > %s is already subscribed to the selected list(s)', $this->name, $subscriber->email_address ) );
+			if ((int) $zozoema->get_error_code() === 214) {
+				$log->warning(sprintf('%s > %s is already subscribed to the selected list(s)', $this->name, $subscriber->email_address));
 			} else {
-				$log->error( sprintf( '%s > ZozoEMA API Error: %s', $this->name, $zozoema->get_error_message() ) );
+				$log->error(sprintf('%s > ZozoEMA API Error: %s', $this->name, $zozoema->get_error_message()));
 			}
 
 			// bail
 			return false;
 		}
 
-		$log->info( sprintf( '%s > Successfully subscribed %s', $this->name, $subscriber->email_address ) );
+		$log->info(sprintf('%s > Successfully subscribed %s', $this->name, $subscriber->email_address));
 
 		/**
 		 * Runs right after someone is subscribed using an integration
@@ -478,7 +493,7 @@ abstract class EMA4WP_Integration {
 		 * @param EMA4WP_ZozoEMA_Subscriber[] $subscriber_data
 		 * @param int $related_object_id
 		 */
-		do_action( 'ema4wp_integration_subscribed', $integration, $subscriber->email_address, $subscriber->merge_fields, $map, $related_object_id );
+		do_action('ema4wp_integration_subscribed', $integration, $subscriber->email_address, $subscriber->merge_fields, $map, $related_object_id);
 
 		return $result;
 	}
@@ -488,7 +503,8 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return bool
 	 */
-	public function is_installed() {
+	public function is_installed()
+	{
 		return false;
 	}
 
@@ -497,8 +513,9 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return array
 	 */
-	public function get_ui_elements() {
-		return array_keys( $this->options );
+	public function get_ui_elements()
+	{
+		return array_keys($this->options);
 	}
 
 	/**
@@ -507,9 +524,10 @@ abstract class EMA4WP_Integration {
 	 * @param string $element
 	 * @return bool
 	 */
-	public function has_ui_element( $element ) {
+	public function has_ui_element($element)
+	{
 		$elements = $this->get_ui_elements();
-		return in_array( $element, $elements, true );
+		return in_array($element, $elements, true);
 	}
 
 	/**
@@ -518,7 +536,8 @@ abstract class EMA4WP_Integration {
 	 * @param int $object_id
 	 * @return string
 	 */
-	public function get_object_link( $object_id ) {
+	public function get_object_link($object_id)
+	{
 		return '';
 	}
 
@@ -537,22 +556,25 @@ abstract class EMA4WP_Integration {
 	 *
 	 * @return array
 	 */
-	public function get_data() {
-		$data = array_merge( (array) $_GET, (array) $_POST );
+	public function get_data()
+	{
+		$data = array_merge((array) $_GET, (array) $_POST);
 		return $data;
 	}
 
 	/**
 	 * @return EMA4WP_Debug_Log
 	 */
-	protected function get_log() {
-		return ema4wp( 'log' );
+	protected function get_log()
+	{
+		return ema4wp('log');
 	}
 
 	/**
 	 * @return EMA4WP_API_V3
 	 */
-	protected function get_api() {
-		return ema4wp( 'api' );
+	protected function get_api()
+	{
+		return ema4wp('api');
 	}
 }

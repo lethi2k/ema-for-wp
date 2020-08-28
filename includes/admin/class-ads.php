@@ -37,8 +37,8 @@ class EMA4WP_Admin_Ads
 	public function add_menu_item($items)
 	{
 		$items['extensions'] = array(
-			'title'    => __('Add-ons', 'zozoema-for-wp'),
-			'text'     => __('Add-ons', 'zozoema-for-wp'),
+			// 'title'    => __('Add-ons', 'zozoema-for-wp'),
+			// 'text'     => __('Add-ons', 'zozoema-for-wp'),
 			'slug'     => 'extensions',
 			'callback' => array($this, 'show_extensions_page'),
 			'position' => 100,

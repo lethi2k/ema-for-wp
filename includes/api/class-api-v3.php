@@ -20,7 +20,6 @@ class EMA4WP_API_V3
 	{
 		//lay key tu pubgin
 		$this->client = new EMA4WP_API_V3_Client($api_key);
-		$this->get_lists();
 	}
 
 	/**
@@ -80,7 +79,7 @@ class EMA4WP_API_V3
 
 	public function get_list_activity($list_id, array $args = array())
 	{
-		$resource = sprintf('/lists/%s/activity', $list_id);
+		$resource = sprintf('/lists/%s', $list_id);
 		$data     = $this->client->get($resource, $args);
 		if (is_object($data) && isset($data->activity)) {
 			return $data->activity;
@@ -102,7 +101,7 @@ class EMA4WP_API_V3
 	 */
 	public function get_list_interest_categories($list_id, array $args = array())
 	{
-		$resource = sprintf('/lists/%s/interest-categories', $list_id);
+		$resource = sprintf('/lists/%s', $list_id);
 		$data     = $this->client->get($resource, $args);
 
 		if (is_object($data) && isset($data->categories)) {
@@ -150,14 +149,40 @@ class EMA4WP_API_V3
 		$resource = sprintf('/lists/%s/subscribers', $list_id);
 		$data     = $this->client->get($resource, $args);
 		foreach ($data as $val) {
-			if (is_object($data) && isset($val)) {
+			if (is_object($val) && isset($val)) {
 				return $val;
 			}
 		}
+		
 		// if (is_object($data) && isset($data->merge_fields)) {
 		// 	return $data->merge_fields;
 		// }
 
+		return array();
+	}
+
+
+		/**
+	 * Get merge vars for a given list
+	 *
+	 * @link https://developer.mailchimp.com/documentation/mailchimp/reference/lists/merge-fields/#read-get_lists_list_id_merge_fields
+	 *
+	 * @param string $list_id
+	 * @param array $args
+	 *
+	 * @return array
+	 * @throws MC4WP_API_Exception
+	 */
+	public function get_list_merge_fields_uid($list_id, $email_address, array $args = array())
+	{
+		$resource = sprintf('/lists/%s/subscribers/%s', $list_id, $email_address);
+		$data     = $this->client->get($resource, $args);
+		foreach($data as $val){
+			if (is_object($val) && isset($val->uid)) {
+				return $val->uid;
+			}
+			
+		}
 		return array();
 	}
 
@@ -211,7 +236,7 @@ class EMA4WP_API_V3
 	public function get_list_member($list_id, $email_address, array $args = array())
 	{
 		$subscriber_hash = $this->get_subscriber_hash($email_address);
-		$resource        = sprintf('/api/v1/lists/%s/subscribers/%s', $list_id, $subscriber_hash);
+		$resource        = sprintf('/lists/%s/subscribers/%s', $list_id, $email_address);
 		$data            = $this->client->get($resource, $args);
 		return $data;
 	}
@@ -313,8 +338,8 @@ class EMA4WP_API_V3
 	 */
 	public function update_list_member($list_id, $email_address, array $args)
 	{
-		$subscriber_hash = $this->get_subscriber_hash($email_address);
-		$resource        = sprintf('/lists/%s/subscribers', $list_id, $subscriber_hash);
+		// $subscriber_hash = $this->get_subscriber_hash($email_address);
+		$resource        = sprintf('/api/v1/lists/%s/subscribers/'.$this->get_list_merge_fields_uid($list_id, $email_address).'/subscribe', $list_id, $subscriber_hash);
 
 		// make sure we're sending an object as the ZozoEMA schema requires this
 		if (isset($args['merge_fields'])) {
@@ -340,7 +365,7 @@ class EMA4WP_API_V3
 	public function delete_list_member($list_id, $email_address)
 	{
 		$subscriber_hash = $this->get_subscriber_hash($email_address);
-		$resource        = sprintf('/lists/%s/subscribers/5f46068b86f9b/delete', $list_id, $subscriber_hash);
+		$resource        = sprintf('/lists/%s/subscribers/'.$this->get_list_merge_fields_uid($list_id, $email_address).'/delete', $list_id, $subscriber_hash);
 		$data            = $this->client->delete($resource);
 		return !!$data;
 	}
