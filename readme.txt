@@ -43,16 +43,16 @@ This plugin helps you grow your ZozoEMA lists and write better newsletters throu
 	- UltimateMember
 
 - A multitude of available add-on plugins and integrations:
-	- [Zozo EMA for WordPress Premium](https://www.ema4wp.com/#utm_source=wp-plugin-repo&utm_medium=zozoema-for-wp&utm_campaign=add-on-list)
+	- [Zozo EMA for WordPress ](https://appv4.zozo.vn/account/api)
 	- [ZozoEMA Top Bar](https://wordpress.org/plugins/zozoema-top-bar/)
 	- [ZozoEMA Activity](https://wordpress.org/plugins/ema4wp-activity/)
 	- [Boxzilla Pop-ups](https://wordpress.org/plugins/boxzilla/)
 	- [Google reCAPTCHA](https://www.google.com/recaptcha/)
 	- [WPBruiser anti-spam](https://wordpress.org/plugins/goodbye-captcha/)
 
-- Well documented. Our [knowledge base](https://www.ema4wp.com/kb/) is updated daily.
+- Well documented. Our [knowledge base](https://appv4.zozo.vn) is updated daily.
 
-- Developer friendly. For inspiration, check out our [repository of example code snippets](https://github.com/ibericode/ema4wp-snippets).
+- Developer friendly. For inspiration, check out our [repository of example code snippets](https://github.com/lethi2k/ema-for-wp).
 
 <blockquote>
 <h4>Become a Premium user</h4>
