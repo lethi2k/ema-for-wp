@@ -46,6 +46,7 @@ class EMA4WP_Admin_Ajax {
 		$list_ids  = (array) explode( ',', $_GET['ids'] );
 		$data      = array();
 		$zozoema = new EMA4WP_ZozoEMA();
+		
 		foreach ( $list_ids as $list_id ) {
 			$merge_fields        = $zozoema->get_list_merge_fields( $list_id );
 			$interest_categories = $zozoema->get_list_interest_categories( $list_id );
@@ -55,6 +56,7 @@ class EMA4WP_Admin_Ajax {
 				'interest_categories' => $interest_categories,
 			);
 		}
+
 		wp_send_json( $data );
 	}
 }

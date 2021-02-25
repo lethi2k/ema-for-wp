@@ -40,13 +40,11 @@ class EMA4WP_API_V3
 	 */
 	public function is_connected()
 	{
-
 		//du lieu lay tu api lists
-		$data = $this->client->get('/lists', array('uid' => 'account_id'));
-
+		$data = $this->client->get('/lists', array('fields' => 'uid'));
 		//tim xem co uid hay khong neu khong return false
-		foreach ($data as $val) {
-			$connected = is_object($val) && isset($val->id);
+		foreach ($data->data as $val) {
+			$connected = is_object($val) && isset($val->uid);
 			break;
 		}
 
@@ -149,12 +147,15 @@ class EMA4WP_API_V3
 	{
 		$resource = sprintf('/lists/%s/merge-fields', $list_id);
 		$data     = $this->client->get($resource, $args);
-		foreach ($data as $val) {
+		foreach ($data->data->fields as $val) {
 			if (is_object($val) && isset($val)) {
-				return $data;
+				$val->name = $val->label;
+			}else{
+				return array();
 			}
 		}
-		return array();
+		return $data->data->fields;
+		
 	}
 
 
@@ -173,7 +174,7 @@ class EMA4WP_API_V3
 	{
 		$resource = sprintf('/lists/%s/subscribers/%s', $list_id, $email_address);
 		$data     = $this->client->get($resource, $args);
-		foreach($data as $val){
+		foreach($data->data as $val){
 			if (is_object($val) && isset($val->uid)) {
 				return $val->uid;
 			}
@@ -209,9 +210,9 @@ class EMA4WP_API_V3
 	{
 		$resource = '/lists';
 		$data     = $this->client->get($resource, $args);
-		foreach ($data as $val) {
+		foreach ($data->data as $val) {
 			if (is_object($val) && isset($val)) {
-				return $data;
+				return $data->data;
 			}
 		}
 		return array();

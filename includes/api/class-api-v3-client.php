@@ -11,7 +11,7 @@ class EMA4WP_API_V3_Client
 	/**
 	 * @var string
 	 */
-	private $api_url = 'http://api.appv4.zema.de';
+	private $api_url = 'http://api.appv4.zozo.vn';
 
 	/**
 	 * @var array
@@ -43,7 +43,6 @@ class EMA4WP_API_V3_Client
 			$this->api_url = str_replace('//api.', '//', $this->api_url . '/api/v1/');
 		}
 	}
-
 
 	/**
 	 * @param string $resource

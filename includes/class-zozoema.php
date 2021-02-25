@@ -228,12 +228,12 @@ class EMA4WP_ZozoEMA
 	{
 		$transient_key = sprintf('ema4wp_list_%s_mf', $list_id);
 		$cached        = get_transient($transient_key);
-		if (is_array($cached)) {
-			return $cached;
-		}
+		// if (is_array($cached)) {
+		// 	return $cached;
+		// }
 
 		$api = $this->get_api();
-
+		
 		try {
 			// fetch list merge fields
 			$merge_fields = $api->get_list_merge_fields(
@@ -246,7 +246,7 @@ class EMA4WP_ZozoEMA
 		} catch (EMA4WP_API_Exception $e) {
 			return array();
 		}
-
+		
 		// add EMAIL field
 		array_unshift(
 			$merge_fields,
@@ -261,6 +261,8 @@ class EMA4WP_ZozoEMA
 		);
 
 		set_transient($transient_key, $merge_fields, HOUR_IN_SECONDS * 24);
+
+		
 		return $merge_fields;
 	}
 
@@ -328,12 +330,11 @@ class EMA4WP_ZozoEMA
 		$cache_key = 'ema4wp_zozoema_lists';
 		$cached    = get_transient($cache_key);
 
-		if (is_array($cached) && !$skip_cache) {
-			return $cached;
-		}
+		// if (is_array($cached) && !$skip_cache) {
+		// 	return $cached;
+		// }
 
 		$lists = $this->fetch_lists();
-
 		/**
 		 * Filters the cache time for ZozoEMA lists configuration, in seconds. Defaults to 24 hours.
 		 */
